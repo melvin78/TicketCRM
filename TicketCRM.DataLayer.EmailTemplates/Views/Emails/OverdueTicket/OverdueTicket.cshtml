@@ -1,0 +1,29 @@
+﻿@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.OverdueTicket.OverdueTicketModel
+@{
+    ViewData["EmailTitle"] = "Overdue Ticket";
+}
+
+<div>
+    Ticket No @Model.TicketNo has not been resolved and has been marked as overdue.
+    
+    Agent assigned @Model.CareTaker
+    
+    <hr/>
+    
+    @Html.Raw(@Model.FirstMessage)
+    
+    
+    <em>If the issue has already been resolved,you can mark it as resolved to avoid getting this email notification.Click on resolve ticket.</em>
+
+</div>
+   
+
+<br />
+
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Resolve Ticket", Model.Url))
+
+<br/>
+
+<br />
+

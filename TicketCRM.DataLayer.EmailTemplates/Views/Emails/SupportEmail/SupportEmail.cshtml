@@ -1,0 +1,42 @@
+﻿@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.SupportEmail.SupportEmailViewModel
+
+@{
+    ViewData["EmailTitle"] = "Issue Raised";
+}
+
+<div>
+    New Issue Has been raised
+</div>
+   
+<p>Ticket No: @Model.TicketNumber</p>
+<br />
+<br/>
+<p>Opened By: @Model.ClientEmailAddress</p>
+<br/>
+<br/>
+<p>Issue: @Model.Enquiry</p>
+
+<hr/>
+<div>
+    @Html.Raw(Model.Issue)
+</div>
+@if(@Model.AgentsAddressed.Count>0){
+    <em>Agents Addressed:</em>
+    foreach (var obj in @Model.AgentsAddressed)
+    {
+        <em>@obj</em>
+    }
+}
+<em></em>
+
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("View Ticket Details", Model.Url))
+
+<br/>
+
+
+<br />
+
+<p>
+    Centrino Technologies Innovation Redefined
+</p>

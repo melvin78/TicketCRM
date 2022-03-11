@@ -1,0 +1,24 @@
+﻿@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.TransferredTicket.TransferredTicketViewModel
+
+@{
+    ViewData["EmailTitle"] = "Your Ticket";
+}
+
+<div>
+Ticket Transferred
+
+</div>
+   
+
+<br />
+@Model.OldAgent has transferred ticket  @Model.TicketNo to you. The issue was about @Html.Raw(Model.Enquiry)
+@* @await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Confirm Account", Model.ConfirmEmailUrl)) *@
+
+<br/>
+
+
+<br />
+
+<p>
+   Centrino Technologies Innovation Redefined
+</p>

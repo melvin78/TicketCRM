@@ -1,0 +1,49 @@
+﻿@using Newtonsoft.Json.Linq
+@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.ConversationalEmails.ConversationalEmailViewModel;
+
+@{
+    ViewData["EmailTitle"] = "You have one new message";
+}
+
+
+
+<div>
+    <p>Ticket No : @Model.TicketNumber</p>
+    <br/>
+    <em>
+       @Model.EmailAddress replied:
+    </em>
+    
+    @Html.Raw(Model.Message)
+    
+    @{
+        JArray res = JArray.Parse(Model.Attachments);
+        int i = 0;
+        foreach (var jToken in res)
+        {
+        
+            var item = (JObject) jToken;
+            string filename = item.GetValue("filename")?.ToString();
+            <a href="https://centrino-cdn.fra1.digitaloceanspaces.com/centrino-cdn/@(filename)">attachment @i</a>
+            i++;
+        }
+
+    }
+    
+      
+    
+  
+
+</div>
+
+
+<br/>
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Reply", Model.Url))
+
+
+<br />
+
+<p>
+    Centrino Technologies Innovation Redefined
+</p>

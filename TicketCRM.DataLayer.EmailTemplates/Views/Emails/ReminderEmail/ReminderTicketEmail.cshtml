@@ -1,0 +1,25 @@
+﻿@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.ReminderEmail.ReminderViewModel
+
+@{
+    ViewData["EmailTitle"] = "Reminder Notification";
+}
+
+<div>
+    Hi,ticket number: @Model.TicketNo is overdue by @Model.OverdueBy day(s). If the issue has been
+    resolved login to the dashboard and mark it as resolved to avoid getting this notification.
+    <br/>
+    
+    raised by : @Model.RaisedBy
+    
+    
+    Issue raised:
+    <hr/>
+    @Html.Raw(@Model.FirstMessage)
+    
+    @await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Go to dashboard", Model.Url))
+
+    
+    
+</div>
+

@@ -1,0 +1,24 @@
+﻿@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.ResolvedTicket.ResolvedTicketViewModel
+
+@{
+    ViewData["EmailTitle"] = "Your Ticket";
+}
+
+<div>
+Your ticket has been resolved
+
+</div>
+   
+
+<br />
+Your ticket number @Model.TicketNumber has been marked as resolved.
+@* @await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Confirm Account", Model.ConfirmEmailUrl)) *@
+
+<br/>
+
+
+<br />
+
+<p>
+   Centrino Technologies Innovation Redefined
+</p>

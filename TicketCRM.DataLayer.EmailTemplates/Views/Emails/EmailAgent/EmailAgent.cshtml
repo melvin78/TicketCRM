@@ -1,0 +1,28 @@
+﻿@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.EmailAgent.EmailAgentViewModel
+
+@{
+    ViewData["EmailTitle"]="New Ticket";
+}
+
+<div>
+    You have been assigned ticket number @Model.TicketNo
+    
+    <p>CLIENT NAME: @Model.ClientEmailAddress</p>
+    <p>OPENED ON:@Model.CreatedOn</p>
+    <p>ISSUE: @Model.Enquiry</p>
+    <p>
+       @Html.Raw(Model.FirstMessage) 
+    </p>
+  
+
+</div>
+   
+
+<br />
+
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Respond To Issue", Model.Url))
+
+<br/>
+
+<br />

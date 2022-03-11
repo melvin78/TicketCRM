@@ -1,0 +1,20 @@
+﻿@using TicketCRM.DataLayer.EmailTemplates.Views.Shared
+@model TicketCRM.DataLayer.EmailTemplates.Views.Emails.RegisteredAccount.NewAccountViewModel
+
+@{
+    ViewData["EmailTitle"]="Confirm Your Account";
+}
+
+<div>
+Hello there just one last step, we just need you to confirm your account by clickig the link below
+
+</div>
+   
+
+<br />
+
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Confirm Account", Model.ConfirmationUrl))
+
+<br/>
+
+<br />
