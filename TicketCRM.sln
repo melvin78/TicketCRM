@@ -1,6 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM", "TicketCRM\TicketCRM.csproj", "{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.ApplicationLayer.MainBoundedContext", "TicketCRM.ApplicationLayer.MainBoundedContext\TicketCRM.ApplicationLayer.MainBoundedContext.csproj", "{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TicketCRM.ApplicationLayer", "TicketCRM.ApplicationLayer", "{243EA1CE-CAB7-465C-98A8-ECBE138BC909}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TicketCRM.DataLayer", "TicketCRM.DataLayer", "{7B9B6EC6-06EE-48CF-9136-7BFD3B481000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TicketCRM.DomainLayer", "TicketCRM.DomainLayer", "{AA084423-949D-4304-B032-A39685E67029}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TicketCRM.Infrastructure", "TicketCRM.Infrastructure", "{49638EB6-1B10-49EF-B329-E5D3488BC7D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.ApplicationLayer.SeedWork", "TicketCRM.ApplicationLayer.SeedWork\TicketCRM.ApplicationLayer.SeedWork.csproj", "{B12ABF8B-B985-4003-B6BF-D191EDAEAF13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.DataLayer.DataAccess", "TicketCRM.DataLayer.DataAccess\TicketCRM.DataLayer.DataAccess.csproj", "{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.DomainLayer.MainBoundedContext", "TicketCRM.DomainLayer.MainBoundedContext\TicketCRM.DomainLayer.MainBoundedContext.csproj", "{043BB511-C0EE-4AA0-8926-E3A43B015DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.DomainLayer.MainBoundedContextDTO", "TicketCRM.DomainLayer.MainBoundedContextDTO\TicketCRM.DomainLayer.MainBoundedContextDTO.csproj", "{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.Infrastructure.Utilities", "TicketCRM.Infrastructure.Utilities\TicketCRM.Infrastructure.Utilities.csproj", "{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerAspNetIdentity", "IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{9C92475F-CC4C-4883-BDD0-97D7173EFBE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.DataLayer.EmailTemplates", "TicketCRM.DataLayer.EmailTemplates\TicketCRM.DataLayer.EmailTemplates.csproj", "{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +34,42 @@ Global
 		{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12ABF8B-B985-4003-B6BF-D191EDAEAF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12ABF8B-B985-4003-B6BF-D191EDAEAF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12ABF8B-B985-4003-B6BF-D191EDAEAF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12ABF8B-B985-4003-B6BF-D191EDAEAF13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043BB511-C0EE-4AA0-8926-E3A43B015DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043BB511-C0EE-4AA0-8926-E3A43B015DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043BB511-C0EE-4AA0-8926-E3A43B015DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043BB511-C0EE-4AA0-8926-E3A43B015DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C92475F-CC4C-4883-BDD0-97D7173EFBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C92475F-CC4C-4883-BDD0-97D7173EFBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C92475F-CC4C-4883-BDD0-97D7173EFBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C92475F-CC4C-4883-BDD0-97D7173EFBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA} = {243EA1CE-CAB7-465C-98A8-ECBE138BC909}
+		{B12ABF8B-B985-4003-B6BF-D191EDAEAF13} = {243EA1CE-CAB7-465C-98A8-ECBE138BC909}
+		{16D845AB-797C-4E9B-A314-BCA4FA0CE2BB} = {7B9B6EC6-06EE-48CF-9136-7BFD3B481000}
+		{043BB511-C0EE-4AA0-8926-E3A43B015DE3} = {AA084423-949D-4304-B032-A39685E67029}
+		{CD4D6557-9B36-4F80-BDA4-7C4455D7D2F5} = {AA084423-949D-4304-B032-A39685E67029}
+		{6B8DDF7F-ECE2-4742-B5ED-F046A4B84508} = {49638EB6-1B10-49EF-B329-E5D3488BC7D6}
+		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB} = {7B9B6EC6-06EE-48CF-9136-7BFD3B481000}
 	EndGlobalSection
 EndGlobal

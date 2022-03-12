@@ -1,10 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>TicketCRM.EmailTemplates</RootNamespace>
+        <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+        <AssemblyName>TicketCRM.DataLayer.EmailTemplates</AssemblyName>
+        <RootNamespace>TicketCRM.DataLayer.EmailTemplates</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+  
+
+    <ItemGroup>
+        <PackageReference Include="Humanizer" Version="2.11.10" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Emails\FirstMessage\FirstMessageEmail.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Emails\OverdueTIckets\OverdueTicketModel.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TicketCRM.DomainLayer.MainBoundedContextDTO\TicketCRM.DomainLayer.MainBoundedContextDTO.csproj" />
+    </ItemGroup>
+
 
 </Project>
