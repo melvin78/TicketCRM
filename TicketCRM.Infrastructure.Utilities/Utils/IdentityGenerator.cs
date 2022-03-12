@@ -1,7 +1,6 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
-namespace Centrino.Infrastructure.Utils.Utils
+namespace TicketCRM.Infrastructure.Utilities.Utils
 {
     public static class IdentityGenerator
     {

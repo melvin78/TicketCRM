@@ -7,4 +7,13 @@
         <RootNamespace>TicketCRM.DataAccess</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="EntityFramework" Version="6.4.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-preview.1.22076.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TicketCRM.DomainLayer.MainBoundedContext\TicketCRM.DomainLayer.MainBoundedContext.csproj" />
+    </ItemGroup>
+
 </Project>

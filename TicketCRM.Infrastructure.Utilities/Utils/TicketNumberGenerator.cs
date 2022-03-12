@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography;
-
-namespace Centrino.Infrastructure.Utils.Utils
+﻿namespace TicketCRM.Infrastructure.Utilities.Utils
 {
     public static class TicketNumberGenerator
     {

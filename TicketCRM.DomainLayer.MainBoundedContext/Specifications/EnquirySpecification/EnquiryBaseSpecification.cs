@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Centrino.DomainLayer.MainBoundedContext.Specifications;
-using Centrino.DomainLayer.MainBoundedContext.SupportEntities;
+using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.EnquirySpecification
 {

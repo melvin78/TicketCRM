@@ -1,7 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Centrino.DomainLayer.MainBoundedContext.Specifications;
 using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
-
 namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.TicketSpecification
 {
     public class TicketTransferredSpecification:BaseSpecification<Ticket>

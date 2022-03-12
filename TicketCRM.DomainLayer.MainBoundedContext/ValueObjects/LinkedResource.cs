@@ -1,6 +1,4 @@
-﻿using Domain.Seedwork;
-
-namespace Centrino.DomainLayer.MainBoundedContext.ValueObjects
+﻿namespace TicketCRM.DomainLayer.MainBoundedContext.ValueObjects
 {
     public class LinkedResource:ValueObject<LinkedResource>
     {

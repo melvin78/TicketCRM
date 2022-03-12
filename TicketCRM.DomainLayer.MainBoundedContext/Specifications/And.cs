@@ -1,6 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Centrino.DomainLayer.MainBoundedContext;
-using Centrino.DomainLayer.MainBoundedContext.Specifications;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications
 {

@@ -1,5 +1,4 @@
-﻿using Centrino.DomainLayer.MainBoundedContext;
-using IdentityServerAspNetIdentity.Models;
+﻿using IdentityServerAspNetIdentity.Models;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext
 {

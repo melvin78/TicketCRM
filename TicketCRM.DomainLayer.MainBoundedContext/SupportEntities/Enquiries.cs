@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using TicketCRM.DomainLayer.MainBoundedContext;
-
-namespace Centrino.DomainLayer.MainBoundedContext.SupportEntities
+﻿namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
 {
     public class Enquiries:BaseEntity
     {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using Centrino.DomainLayer.MainBoundedContext.SupportEntities;
-using TicketCRM.DomainLayer.MainBoundedContext.Specifications;
+﻿using System.Linq.Expressions;
+using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 
-namespace Centrino.DomainLayer.MainBoundedContext.Specifications.TicketStatusSpecification
+namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.TicketStatusSpecification
 {
     public class TicketStatusSpecification:BaseSpecification<TicketStatus>
     {

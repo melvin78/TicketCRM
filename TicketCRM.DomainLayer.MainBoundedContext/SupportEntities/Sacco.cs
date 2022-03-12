@@ -1,6 +1,4 @@
-﻿using Centrino.DomainLayer.MainBoundedContext.SupportEntities;
-
-namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
+﻿namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
 {
     public class Sacco:BaseEntity
     {

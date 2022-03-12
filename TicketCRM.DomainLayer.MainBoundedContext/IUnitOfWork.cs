@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using TicketCRM.DomainLayer.MainBoundedContext;
-
-namespace Centrino.DomainLayer.MainBoundedContext
+﻿namespace TicketCRM.DomainLayer.MainBoundedContext
 {
     public interface IUnitOfWork : IDisposable
     {

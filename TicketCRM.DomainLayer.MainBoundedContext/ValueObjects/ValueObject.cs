@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
-namespace Domain.Seedwork
+namespace TicketCRM.DomainLayer.MainBoundedContext.ValueObjects
 {
     /// <summary>
     /// Base class for value objects in domain.

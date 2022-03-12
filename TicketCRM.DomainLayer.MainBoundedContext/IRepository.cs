@@ -1,6 +1,4 @@
-﻿using Centrino.DomainLayer.MainBoundedContext;
-
-namespace TicketCRM.DomainLayer.MainBoundedContext
+﻿namespace TicketCRM.DomainLayer.MainBoundedContext
 {
     public interface IRepository<TEntity> where TEntity: class
     {

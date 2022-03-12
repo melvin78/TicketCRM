@@ -1,4 +1,4 @@
-﻿using Centrino.DomainLayer.MainBoundedContext.ValueObjects;
+﻿using TicketCRM.DomainLayer.MainBoundedContext.ValueObjects;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
 {

@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Centrino.DomainLayer.MainBoundedContext.Specifications;
 using IdentityServerAspNetIdentity.Models;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.UserSpecification
