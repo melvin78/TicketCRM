@@ -11,7 +11,7 @@
             string firstTwoCharEnquiryCategory = new string(enquiryCategoryId.ToString().ToUpper().Take(4).ToArray());
             string firstTwoSacco = new string(saccoId.ToString().ToUpper().Take(4).ToArray());
 
-            return $"CEN-{firstTwoSacco}-{generatedTicketNo}-{firstTwoCharEnquiryCategory}";
+            return $"CRM-{firstTwoSacco}-{generatedTicketNo}-{firstTwoCharEnquiryCategory}";
 
         }
     }
