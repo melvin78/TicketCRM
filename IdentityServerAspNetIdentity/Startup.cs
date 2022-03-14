@@ -75,7 +75,7 @@ namespace IdentityServerAspNetIdentity
             services.AddScoped<IAgentService, AgentService>();
             services.AddScoped<IDepartmentService,DepartmentService>();
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
-            services.AddScoped<ISaccoService, SaccoService>();
+            services.AddScoped<IOrganizationService, OrganizationService>();
             services.AddTransient(typeof(IEmailTemplateResolver<>),typeof(EmailTemplateResolver<>));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {

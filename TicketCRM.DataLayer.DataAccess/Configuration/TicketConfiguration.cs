@@ -27,7 +27,7 @@ namespace TicketCRM.DataAccess.Configuration
                 .HasForeignKey(o => o.Id);
 
             builder.HasMany(o => o.Sacco)
-                .WithOne(o => o.Tickets)
+                .WithOne(o => o.Ticket)
                 .HasForeignKey(o => o.Id);
             
             builder.HasMany(o => o.TicketStatus)

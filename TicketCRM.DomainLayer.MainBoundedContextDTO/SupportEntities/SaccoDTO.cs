@@ -1,9 +1,9 @@
 ﻿namespace TicketCRM.DomainLayer.MainBoundedContextDTO.SupportEntities
 {
-    public class SaccoDTO
+    public class OrganizationDTO
     {
         
-        public string SaccoName { get; set; }
+        public string OrganizationName { get; set; }
         
 
     }

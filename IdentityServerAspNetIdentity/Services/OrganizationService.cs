@@ -6,11 +6,11 @@ using IdentityServerAspNetIdentity.Data;
 
 namespace IdentityServerAspNetIdentity.Services
 {
-    public class SaccoService:ISaccoService
+    public class OrganizationService:IOrganizationService
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public SaccoService(ApplicationDbContext applicationDbContext)
+        public OrganizationService(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }

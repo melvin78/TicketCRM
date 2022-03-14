@@ -28,11 +28,10 @@ namespace TicketCRM.SupportModule
             return  ticketSummaryReport;     
         }
 
-        public List<TicketSummary> FindTicketSummaryBySaccoId(Guid ticketStatus, Guid SaccoId)
+        public List<TicketSummary> FindTicketSummaryByOrganizationId(Guid ticketStatus, Guid organizationId)
         {
-            // SELECT * FROM `centrino.email`.ticket_summaries where TicketStatusId ='e70fc103-471c-ec11-b063-14cb19ba19a9' and SaccoId = '2fc42189-9497-4638-b5de-22ce8d46c595'
             var ticketSummaryReport =   _unitOfWork.Repository<TicketSummary>()
-                .GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndSaccoId(ticketStatus.ToString(),SaccoId.ToString());
+                .GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndSaccoId(ticketStatus.ToString(),organizationId.ToString());
 
             return  ticketSummaryReport;     
         }

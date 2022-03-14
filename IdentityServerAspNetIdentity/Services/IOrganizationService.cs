@@ -4,7 +4,7 @@ using IdentityServerAspNetIdentity.Configuration;
 
 namespace IdentityServerAspNetIdentity.Services
 {
-    public interface ISaccoService
+    public interface IOrganizationService
     {
         List<Sacco> GetListOfSaccos();
 

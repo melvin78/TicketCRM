@@ -4,15 +4,15 @@ using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 
 namespace TicketCRM.DataAccess.Configuration
 {
-    public class SaccoCofniguration:IEntityTypeConfiguration<Sacco>
+    public class SaccoCofniguration:IEntityTypeConfiguration<Organization>
     {
-        public void Configure(EntityTypeBuilder<Sacco> builder)
+        public void Configure(EntityTypeBuilder<Organization> builder)
         {
             builder.HasIndex(o => o.Id);
 
-            builder.Property(o => o.SaccoName).HasMaxLength(20);
+            builder.Property(o => o.OrganizationName).HasMaxLength(50);
 
-            builder.ToTable("support_saccos");
+            builder.ToTable("support_organizations");
         }
     }
 }

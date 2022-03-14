@@ -3,7 +3,7 @@ using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 
 namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.SaccoSpecification
 {
-    public class SaccoBaseSpecification:BaseSpecification<Sacco>
+    public class SaccoBaseSpecification:BaseSpecification<Organization>
     {
         public Guid? SaccoId { get; set; }
 
@@ -12,7 +12,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.SaccoSpecifica
             SaccoId = saccoId;
 
         }
-        public override Expression<Func<Sacco, bool>> SpecExpression
+        public override Expression<Func<Organization, bool>> SpecExpression
         {
             get
             {

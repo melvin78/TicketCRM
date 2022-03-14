@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\TicketCRM.ApplicationLayer.SeedWork\TicketCRM.ApplicationLayer.SeedWork.csproj" />
       <ProjectReference Include="..\TicketCRM.DomainLayer.MainBoundedContext\TicketCRM.DomainLayer.MainBoundedContext.csproj" />
       <ProjectReference Include="..\TicketCRM.Infrastructure.Utilities\TicketCRM.Infrastructure.Utilities.csproj" />

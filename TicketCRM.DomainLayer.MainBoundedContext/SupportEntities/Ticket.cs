@@ -1,4 +1,6 @@
-﻿namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
+﻿using TicketCRM.DomainLayer.MainBoundedContextDTO.SupportEntities;
+
+namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
 {
     public class Ticket : BaseEntity
     {
@@ -46,7 +48,7 @@
         
         public List<EnquiryCategory> EnquiryCategory { get; set; }
 
-        public List<Sacco> Sacco { get; set; }
+        public List<Organization> Sacco { get; set; }
 
         public List<TicketStatus> TicketStatus { get; set; }
 

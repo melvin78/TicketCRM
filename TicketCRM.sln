@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerAspNetIdentit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.DataLayer.EmailTemplates", "TicketCRM.DataLayer.EmailTemplates\TicketCRM.DataLayer.EmailTemplates.csproj", "{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketCRM.TestSolution", "TicketCRM.TestSolution\TicketCRM.TestSolution.csproj", "{A65E3B1E-47C6-4254-8FFA-2BBE710B55E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3A700C-05A9-405A-BA74-A8D6906B0ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A65E3B1E-47C6-4254-8FFA-2BBE710B55E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A65E3B1E-47C6-4254-8FFA-2BBE710B55E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A65E3B1E-47C6-4254-8FFA-2BBE710B55E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A65E3B1E-47C6-4254-8FFA-2BBE710B55E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CA25C292-4FA6-4AD9-BE63-DD540D73EBDA} = {243EA1CE-CAB7-465C-98A8-ECBE138BC909}

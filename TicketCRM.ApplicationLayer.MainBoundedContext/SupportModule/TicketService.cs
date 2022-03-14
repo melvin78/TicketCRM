@@ -28,8 +28,7 @@ namespace TicketCRM.SupportModule
         private readonly IMapper _mapper;
         private readonly ILogger<TicketService> _logger;
         private readonly IPusherService _pusherService;
-        private readonly ISaccoTicketService _saccoTicketService;
-        private readonly ISaccoService _saccoService;
+        private readonly IOrganizationService _organizationService;
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _configuration;
         private readonly IRecentActivityService _recentActivityService;
@@ -38,7 +37,7 @@ namespace TicketCRM.SupportModule
         private readonly IEmailTemplateResolver<SupportEmailViewModel> _supportEmailViewModel;
         private readonly IEmailTemplateResolver<OverdueTicketModel> _overdueTicketEmailViewModel;
         private readonly IEmailTemplateResolver<ReminderViewModel> _reminderEmailTemplateResolver;
-        
+
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -54,7 +53,7 @@ namespace TicketCRM.SupportModule
             IRecentActivityService recentActivityService,
             IApplicationUserService applicationUserService,
             IPusherService pusherService,
-            ISaccoTicketService saccoTicketService,
+            IOrganizationService organizationService,
             IWebHostEnvironment env,
             IConfiguration configuration,
             IEnquiryCategoryService enquiryCategoryService)
@@ -72,7 +71,7 @@ namespace TicketCRM.SupportModule
             _recentActivityService = recentActivityService;
             _applicationUserService = applicationUserService;
             _pusherService = pusherService;
-            _saccoTicketService = saccoTicketService;
+            _organizationService = organizationService;
             _env = env;
             _configuration = configuration;
             _enquiryCategoryService = enquiryCategoryService;
@@ -140,9 +139,9 @@ namespace TicketCRM.SupportModule
 
             var enquiryVal = _enquiryCategoryService.GetEnquiryCategory(ticketDetails.EnquiryCategoryId);
 
-            var saccoid = _applicationUserService.GetSaccoId(ticketDto.CustomerId.ToString());
+            var organizationId = _applicationUserService.GetSaccoId(ticketDto.CustomerId.ToString());
 
-            string saccoName = await _saccoTicketService.FindSaccoName(saccoid);
+            string saccoName = _organizationService.FindOrganisationName(organizationId);
 
             await SendEmailNotification(ticketDetails, userEmailAddress);
 
@@ -168,7 +167,8 @@ namespace TicketCRM.SupportModule
             var link = $"https://agents.caprover.centrino.co.ke/ticket/{ticketDetails.TicketNo}";
 
 
-            await SendSupportEmail(ticketDetails.TicketNo, userEmailAddress, enquiryVal, ticketDto.FirstMessage, link,ticketDto.AgentAddressed,saccoName);
+            await SendSupportEmail(ticketDetails.TicketNo, userEmailAddress, enquiryVal, ticketDto.FirstMessage, link,
+                ticketDto.AgentAddressed, saccoName);
 
 
             return ticketDetails;
@@ -182,11 +182,13 @@ namespace TicketCRM.SupportModule
             for (int i = 0; i < reminderTikcets.Count; i++)
             {
                 var formatOverdueby = TimeSpan.FromSeconds(Math.Abs(reminderTikcets[i].OverDueBy)).Days;
-                
+
                 _logger.LogInformation($"overdue by {Math.Abs(reminderTikcets[i].OverDueBy)}");
-                _logger.LogInformation($"convert overdue value is {TimeSpan.FromSeconds(Math.Abs(reminderTikcets[i].OverDueBy))}");
-                _logger.LogInformation($"final value is {TimeSpan.FromSeconds(Math.Abs(reminderTikcets[i].OverDueBy)).Days}");
-                
+                _logger.LogInformation(
+                    $"convert overdue value is {TimeSpan.FromSeconds(Math.Abs(reminderTikcets[i].OverDueBy))}");
+                _logger.LogInformation(
+                    $"final value is {TimeSpan.FromSeconds(Math.Abs(reminderTikcets[i].OverDueBy)).Days}");
+
                 var reminderViewModel = new ReminderViewModel(reminderTikcets[i].TicketNo, formatOverdueby,
                     "https://agents.caprover.centrino.co.ke", reminderTikcets[i].FirstMessage,
                     reminderTikcets[i].RaisedBy, reminderTikcets[i].SaccoName);
@@ -200,7 +202,8 @@ namespace TicketCRM.SupportModule
                 var builder = _reminderEmailTemplateResolver.BuildEmailBodyAsync(mailviewDto, reminderViewModel);
 
 
-                _emailService.SendEmail(builder.Result.ToMessageBody(), reminderTikcets[i].Username, "Reminder Notification");
+                _emailService.SendEmail(builder.Result.ToMessageBody(), reminderTikcets[i].Username,
+                    "Reminder Notification");
             }
         }
 
@@ -377,43 +380,43 @@ namespace TicketCRM.SupportModule
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketReopenedSpecification()).Count();
         }
 
-        public int FindSaccoTransferredTickets(Guid saccoId)
+        public int FindOrganizationTransferredTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketTransferredSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoReopenedTickets(Guid saccoId)
+        public int FindOrganizationReopenedTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketReopenedSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoOpenedTickets(Guid saccoId)
+        public int FindOrganizationOpenedTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketAssignedSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoResolvedTickets(Guid saccoId)
+        public int FindOrganizationResolvedTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketsResolvedSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoOverdueTickets(Guid saccoId)
+        public int FindOrganizationOverdueTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketPendingSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoNewTickets(Guid saccoId)
+        public int FindOrganizationNewTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketNewSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
         }
 
-        public int FindSaccoClosedTickets(Guid saccoId)
+        public int FindOrganizationClosedTickets(Guid saccoId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketClosedSpecification()
                 .And(new TicketSaccoSpecification(saccoId))).Count();
@@ -846,9 +849,10 @@ namespace TicketCRM.SupportModule
 
 
         public async Task<bool> SendSupportEmail(string ticketNumber, string clientEmailAddress, string enquiry,
-            string issue, string url, List<string> agentsAddressed,string subject)
+            string issue, string url, List<string> agentsAddressed, string subject)
         {
-            var supportViewModel = new SupportEmailViewModel(ticketNumber, clientEmailAddress, enquiry, issue, url, agentsAddressed);
+            var supportViewModel =
+                new SupportEmailViewModel(ticketNumber, clientEmailAddress, enquiry, issue, url, agentsAddressed);
 
             var mailviewDto = new MailViewModelDTO();
 

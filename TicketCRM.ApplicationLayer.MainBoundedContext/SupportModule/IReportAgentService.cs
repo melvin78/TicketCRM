@@ -9,7 +9,7 @@ namespace TicketCRM.SupportModule
         List<TicketSummary> GetTicketSummaries(Guid ticketStatus);
 
 
-        List<TicketSummary> FindTicketSummaryBySaccoId(Guid ticketStatus, Guid SaccoId);
+        List<TicketSummary> FindTicketSummaryByOrganizationId(Guid ticketStatus, Guid organizationId);
 
         TicketEmailReportSummary GetEmailTicketReportSummaries(string ticketNo);
         

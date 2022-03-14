@@ -43,19 +43,19 @@ namespace TicketCRM.SupportModule
 
         int FindReopenedTickets();
         
-        int FindSaccoTransferredTickets(Guid saccoId);
+        int FindOrganizationTransferredTickets(Guid saccoId);
 
-        int FindSaccoReopenedTickets(Guid saccoId);
+        int FindOrganizationReopenedTickets(Guid saccoId);
 
-        int FindSaccoOpenedTickets(Guid saccoId);
+        int FindOrganizationOpenedTickets(Guid saccoId);
 
-        int FindSaccoResolvedTickets(Guid saccoId);
+        int FindOrganizationResolvedTickets(Guid saccoId);
 
-        int FindSaccoOverdueTickets(Guid saccoId);
+        int FindOrganizationOverdueTickets(Guid saccoId);
 
-        int FindSaccoNewTickets(Guid saccoId);
+        int FindOrganizationNewTickets(Guid saccoId);
 
-        int FindSaccoClosedTickets(Guid saccoId);
+        int FindOrganizationClosedTickets(Guid saccoId);
 
         Task<bool> ResolveTicket(string ticketNo);
 

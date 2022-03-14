@@ -45,7 +45,7 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly IDepartmentService _departmentService;
         private readonly IMapper _mapper;
         private readonly IAgentService _agentService;
-        private readonly ISaccoService _saccoService;
+        private readonly IOrganizationService _organizationService;
         private readonly IEmailTemplateResolver<NewAccountViewModel> _emailTemplateResolverNewAccount;
         private readonly IEmailTemplateResolver<ForgotPasswordCustomModel> _emailTemplateResolverForgotPassword;
         private readonly IEmailIdentityServerService _emailService;
@@ -60,7 +60,7 @@ namespace IdentityServerHost.Quickstart.UI
             IDepartmentService departmentService,
             IMapper mapper,
             IAgentService agentService,
-            ISaccoService saccoService,
+            IOrganizationService organizationService,
             IEmailTemplateResolver<NewAccountViewModel> emailTemplateResolverNewAccount,
             IEmailTemplateResolver<ForgotPasswordCustomModel> emailTemplateResolverForgotPassword ,
             IEmailIdentityServerService emailService)
@@ -74,7 +74,7 @@ namespace IdentityServerHost.Quickstart.UI
             _departmentService = departmentService;
             _mapper = mapper;
             _agentService = agentService;
-            _saccoService = saccoService;
+            _organizationService = organizationService;
             _emailTemplateResolverNewAccount = emailTemplateResolverNewAccount;
             _emailTemplateResolverForgotPassword = emailTemplateResolverForgotPassword;
             _emailService = emailService;
@@ -84,7 +84,7 @@ namespace IdentityServerHost.Quickstart.UI
         {
             var vm = new RegisterViewModel();
             
-            var allSaccos = _saccoService.GetListOfSaccos();
+            var allSaccos = _organizationService.GetListOfSaccos();
 
             vm.Saccos = new SelectList(_mapper.Map<List<SaccoDTO>>(allSaccos), "Id", "SaccoName");
             
@@ -190,7 +190,7 @@ namespace IdentityServerHost.Quickstart.UI
         {
             if (!ModelState.IsValid)
             {
-                var allSaccos = _saccoService.GetListOfSaccos();
+                var allSaccos = _organizationService.GetListOfSaccos();
 
                 model.Saccos = new SelectList(_mapper.Map<List<SaccoDTO>>(allSaccos), "Id", "SaccoName");
             }
