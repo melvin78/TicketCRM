@@ -24,7 +24,7 @@ namespace TicketCRM.SupportModule
 
         }
 
-        public TicketReport GetTicketReportsByTicketNo(string ticketNo)
+        public TicketReport? GetTicketReportsByTicketNo(string ticketNo)
         {
             
             var clientTicketReport =  _unitOfWork.Repository<TicketReport>()

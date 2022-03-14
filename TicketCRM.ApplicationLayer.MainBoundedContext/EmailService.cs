@@ -1,5 +1,4 @@
 ﻿using System.Net.Mail;
-using Centrino.ApplicationLayer.MainBoundedContext.EmailModule;
 using MailKit.Security;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;

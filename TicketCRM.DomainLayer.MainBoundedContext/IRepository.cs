@@ -25,7 +25,7 @@
 
         Task<List<TEntity>> GetKeylessEntitiy(string rawSql);
 
-        TEntity GetKeylessEntityByParams(string rawSql,string parameters);
+        TEntity? GetKeylessEntityByParams(string rawSql,string parameters);
         
         
         List<TEntity> GetAllKeylessEntityByParams(string rawSql,string parameters);

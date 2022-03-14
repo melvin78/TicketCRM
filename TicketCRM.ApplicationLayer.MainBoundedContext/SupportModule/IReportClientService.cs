@@ -6,7 +6,7 @@ namespace TicketCRM.SupportModule
     {
         Task<List<TicketReport>> GetTicketReports();
 
-        TicketReport GetTicketReportsByTicketNo(string ticketNo);
+        TicketReport? GetTicketReportsByTicketNo(string ticketNo);
 
         List<TicketReport> GetAllTicketReportsByUserId(Guid userId);
 

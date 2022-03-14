@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<TEntity> Repository<TEntity>() where TEntity : class;
+        IRepository<TEntity>? Repository<TEntity>() where TEntity : class;
 
         Guid GetRelatedEntityIdentity<TEntity>() where TEntity : BaseEntity;
         

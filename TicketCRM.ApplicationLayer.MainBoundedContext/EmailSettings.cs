@@ -1,17 +1,22 @@
-﻿namespace Centrino.ApplicationLayer.MainBoundedContext.EmailModule
+﻿namespace TicketCRM
 {
     public class EmailSettings
     {
-        public EmailSettings(string smtpServer, string smtpUserName, string smtpPassword, int smtpServerPort)
+        public EmailSettings(string smtpServer, string smtpUserName, string smtpPassword, int smtpServerPort, string emailDisplayName, string sendersName)
         {
             SmtpServer = smtpServer;
             SmtpUserName = smtpUserName;
             SmtpPassword = smtpPassword;
             SmtpServerPort = smtpServerPort;
+            EmailDisplayName = emailDisplayName;
+            SendersName = sendersName;
+            EmailDisplayName = emailDisplayName;
+            SendersName = sendersName;
         }
 
         public EmailSettings()
         {
+            
         }
 
         public string SmtpServer { get; set; }

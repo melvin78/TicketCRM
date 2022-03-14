@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 using TicketCRM.DomainLayer.MainBoundedContextDTO.SupportEntities;
 using TicketCRM.SupportModule;
 
