@@ -27,7 +27,7 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
 
 //->Main Services
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddRazorPages();
 
 //->Swagger Services
 builder.Services.AddEndpointsApiExplorer();
@@ -54,7 +54,7 @@ builder.Services.AddDbContext<TicketCRMDbContext>(options =>
 
 
 //->Application services
-
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.AddScoped<EmailSettings>(es => emailSettings);
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
@@ -80,6 +80,11 @@ builder.Services.AddTransient<IInboxService, InboxService>();
 builder.Services.AddTransient<IChatService, ChatService>();
 builder.Services.AddTransient<IManualTicketAssignment, ManualTicketAssignment>();
 builder.Services.AddTransient<IOrganizationService, OrganizationService>();
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -103,3 +108,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+app.Run();

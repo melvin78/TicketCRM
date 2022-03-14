@@ -10,10 +10,9 @@ namespace TicketCRM.DataAccess
 
         private Hashtable _repositories;
 
-        public UnitOfWork(TicketCRMDbContext ticketCrmDbContext, Hashtable repositories)
+        public UnitOfWork(TicketCRMDbContext ticketCrmDbContext)
         {
             _ticketCrmDbContext = ticketCrmDbContext;
-            _repositories = repositories;
         }
         public void Dispose()
         {
@@ -22,6 +21,9 @@ namespace TicketCRM.DataAccess
 
         public IRepository<TEntity>? Repository<TEntity>() where TEntity : class
         {
+            if (_repositories==null)
+                _repositories = new Hashtable();
+
             var type = typeof(TEntity).Name;
             if (!_repositories.Contains(type))
             {
@@ -35,7 +37,7 @@ namespace TicketCRM.DataAccess
                 
             }
 
-            return (IRepository<TEntity>) _repositories[type]!;
+            return (IRepository<TEntity>) _repositories[type];
         }
 
         public Guid GetRelatedEntityIdentity<TEntity>() where TEntity : BaseEntity

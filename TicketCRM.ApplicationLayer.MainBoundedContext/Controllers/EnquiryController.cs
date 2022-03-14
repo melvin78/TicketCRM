@@ -38,7 +38,7 @@ namespace TicketCRM.Controllers
         public async Task<ActionResult<IEnumerable<EnquiriesDTO>>> GetEnquiries()
         {
             var enquiries = await _enquiriesService.GetEnquiriesAsync();
-            return Ok(_mapper.Map<IEnumerable<EnquiriesDTO>>(enquiries));
+            return Ok(_mapper.Map<List<EnquiriesDTO>>(enquiries));
           
         }
     }

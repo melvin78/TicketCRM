@@ -8,7 +8,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext
 
         public Guid Id { get; set; }
         
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
 
         [DataMember]
         public virtual DateTime? ModifiedDate { get; set; }
