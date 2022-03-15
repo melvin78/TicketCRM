@@ -2,16 +2,16 @@
 {
     public static class TicketNumberGenerator
     {
-        public static string GenerateTicketNumber(Guid enquiryCategoryId,Guid saccoId)
+        public static string GenerateTicketNumber(Guid enquiryCategoryId,Guid organizationId)
         {
             Random generator = new Random();
             int r = generator.Next(100000);
             string generatedTicketNo = r.ToString("D6");
 
-            string firstTwoCharEnquiryCategory = new string(enquiryCategoryId.ToString().ToUpper().Take(4).ToArray());
-            string firstTwoSacco = new string(saccoId.ToString().ToUpper().Take(4).ToArray());
+            string firstFourEnquiryCategoryId = new string(enquiryCategoryId.ToString().ToUpper().Take(4).ToArray());
+            string firstFourOrganizationId = new string(organizationId.ToString().ToUpper().Take(4).ToArray());
 
-            return $"CRM-{firstTwoSacco}-{generatedTicketNo}-{firstTwoCharEnquiryCategory}";
+            return $"CRM-{firstFourOrganizationId}-{generatedTicketNo}-{firstFourEnquiryCategoryId}";
 
         }
     }
