@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace TicketCRM.TestSolution;
+namespace TicketCRM.UnitTest;
 
 public class UnitTest1
 {
