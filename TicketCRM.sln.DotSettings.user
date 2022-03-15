@@ -3,5 +3,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9b6bf2cf_002D3be0_002D49d1_002D9d0a_002D4e3216ad18fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Correct_Number_of_First_Four_Characters_In_Ticket_Number_Generated" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::167E70F8-258F-49EF-AD31-0DF82A0E9DDE::net6.0::TicketCRM.UnitTest.UnitTests.TicketNumberGeneratorTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A65E3B1E-47C6-4254-8FFA-2BBE710B55E7::net6.0::TicketCRM.EfCoreTests.Tests.TicketRepositoryTests.SaveAsync_Book_RightRecord&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
