@@ -21,7 +21,7 @@ namespace IdentityServerAspNetIdentity.Configuration
 
             agent.HasToken = false;
 
-            agent.SaccoId = Guid.Parse("3d18bfa3-0991-4c13-a866-86635d7863be");
+            agent.OrganizationId = Guid.Parse("3d18bfa3-0991-4c13-a866-86635d7863be");
 
             agent.SecondName = secondName;
 

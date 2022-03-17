@@ -13,10 +13,10 @@
         
         public string RaisedBy { get; set; }
         
-        public string Sacco { get; set; }
+        public string Organization { get; set; }
         
         
-        public ReminderViewModel(string ticketNo,int overdueBy,string url,string firstMessage,string raisedBy,string sacco)
+        public ReminderViewModel(string ticketNo,int overdueBy,string url,string firstMessage,string raisedBy,string organization)
         {
             TicketNo = ticketNo;
 
@@ -28,7 +28,7 @@
 
             RaisedBy = raisedBy;
 
-            Sacco = sacco;
+            Organization = organization;
 
         }
     }

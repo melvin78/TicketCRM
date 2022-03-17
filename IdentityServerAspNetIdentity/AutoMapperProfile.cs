@@ -8,7 +8,7 @@ namespace IdentityServerAspNetIdentity
         {
             CreateMap<Agent, AgentDTO>();
             CreateMap<Department, DepartmentDTO>();
-            CreateMap<Sacco, SaccoDTO>();
+            CreateMap<Organization, OrganizationDTO>();
         }
     }
 }

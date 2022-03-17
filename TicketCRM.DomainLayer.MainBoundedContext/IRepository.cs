@@ -30,7 +30,7 @@
         
         List<TEntity> GetAllKeylessEntityByParams(string rawSql,string parameters);
         
-        List<TEntity> GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndSaccoId(string ticketStatusId, string saccoId);
+        List<TEntity> GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndOrganizationId(string ticketStatusId, string organization);
 
 
 

@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TicketCRM.DataAccess.Configuration;
 using TicketCRM.DomainLayer.MainBoundedContext;
 
@@ -119,11 +123,11 @@ namespace TicketCRM.DataAccess
                 .ToList();
         }
 
-        public List<TEntity> GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndSaccoId(string ticketStatusId, string saccoId)
+        public List<TEntity> GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndOrganizationId(string ticketStatusId, string organizationId)
         {
             return _ticketCrmDbContext
                 .Set<TEntity>().
-                FromSqlInterpolated($"SELECT * FROM `centrino.email`.ticket_summaries where TicketStatusId ={ticketStatusId} and SaccoId = {saccoId}").ToList();;
+                FromSqlInterpolated($"SELECT * FROM `centrino.email`.ticket_summaries where TicketStatusId ={ticketStatusId} and OrganizationId = {organizationId}").ToList();;
         }
 
 

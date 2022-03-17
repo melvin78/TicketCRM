@@ -12,7 +12,7 @@ namespace TicketCRM.DataAccess.Configuration
 
             builder.Ignore(o => o.CreatedBy);
             
-            builder.Property(o => o.SaccoName).HasColumnName("saccoName");
+            builder.Property(o => o.OrganizationName).HasColumnName("OrganizationName");
             
         }
     }

@@ -11,6 +11,6 @@ namespace TicketCRM.SupportModule
 
         List<RecentActivityDTO> FindRecentActivitiesAsync();
         
-        List<RecentActivityDTO> FindRecentActivitiesAsync(string saccoId);
+        List<RecentActivityDTO> FindRecentActivitiesAsync(string organizationId);
     }
 }

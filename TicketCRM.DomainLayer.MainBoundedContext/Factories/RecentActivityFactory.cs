@@ -6,7 +6,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Factories
     {
         public static RecentActivity AddRecentActivity(string color, string icon,
             string task, string ticketNumber,
-            string emailAddress,Guid saccoId)
+            string emailAddress,Guid organizationId)
         {
             var recentActivity = new RecentActivity();
             
@@ -24,7 +24,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Factories
             
             recentActivity.CreatedAt= DateTime.Now;
 
-            recentActivity.SaccoId = saccoId;
+            recentActivity.OrganizationId = organizationId;
 
             return recentActivity;
         }

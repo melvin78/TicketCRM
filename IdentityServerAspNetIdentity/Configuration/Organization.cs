@@ -2,11 +2,11 @@
 
 namespace IdentityServerAspNetIdentity.Configuration
 {
-    public class Sacco
+    public class Organization
     {
         public Guid Id { get; set; }
         
-        public string SaccoName { get; set; }
+        public string OrganizationName { get; set; }
         
         public DateTime? CreatedAt { get; set; }
         

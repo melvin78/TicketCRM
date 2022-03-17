@@ -2,7 +2,7 @@
 
 namespace IdentityServerAspNetIdentity.Configuration
 {
-    public class SaccoDTO
+    public class OrganizationDTO
     {
         public string SaccoName { get; set; }
         

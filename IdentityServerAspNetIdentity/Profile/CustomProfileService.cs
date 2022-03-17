@@ -31,7 +31,7 @@ namespace IdentityServerAspNetIdentity.Profile
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
             
             // Add custom claims in token here based on user properties or any other source
-            claims.Add(new Claim("sacco_id", user.SaccoId.ToString()));
+            claims.Add(new Claim("sacco_id", user.OrganizationId.ToString()));
             claims.Add(new Claim("first_name",user.FirstName));
             claims.Add(new Claim("second_name",user.SecondName));
             

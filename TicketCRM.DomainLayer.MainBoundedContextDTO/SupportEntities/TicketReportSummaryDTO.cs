@@ -60,7 +60,7 @@
         
         public string OverDueBy { get; set; }
         
-        public string SaccoName { get; set; }
+        public string OrganizationName { get; set; }
 
     }
 }

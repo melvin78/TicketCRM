@@ -15,7 +15,7 @@ namespace IdentityServerAspNetIdentity.Configuration
         public virtual DateTime? ModifiedDate { get; set; }
         public Guid UserId { get; set; }
         
-        public Guid SaccoId { get; set; }
+        public Guid OrganizationId { get; set; }
         
         public string Username { get; set; }
         

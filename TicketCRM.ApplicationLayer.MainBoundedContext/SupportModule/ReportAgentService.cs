@@ -31,7 +31,7 @@ namespace TicketCRM.SupportModule
         public List<TicketSummary> FindTicketSummaryByOrganizationId(Guid ticketStatus, Guid organizationId)
         {
             var ticketSummaryReport =   _unitOfWork.Repository<TicketSummary>()
-                .GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndSaccoId(ticketStatus.ToString(),organizationId.ToString());
+                .GetAllKeylessEntityByMultipleParamsByTicketStatusIdAndOrganizationId(ticketStatus.ToString(),organizationId.ToString());
 
             return  ticketSummaryReport;     
         }
@@ -46,7 +46,7 @@ namespace TicketCRM.SupportModule
             return  ticketSummaryReport;     
         }
 
-        public async Task<List<TicketSummary>> FindResolvedTicketsBySaccoId(string saccoId)
+        public async Task<List<TicketSummary>> FindResolvedTicketsByOrganizationId(string organizationId)
         {
             throw new NotImplementedException();
         }

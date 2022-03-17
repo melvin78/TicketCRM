@@ -6,7 +6,7 @@ namespace IdentityServerAspNetIdentity.Services
 {
     public interface IOrganizationService
     {
-        List<Sacco> GetListOfSaccos();
+        List<Organization> GetListOfOrganizations();
 
 
     }

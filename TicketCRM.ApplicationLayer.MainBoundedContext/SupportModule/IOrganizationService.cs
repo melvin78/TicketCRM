@@ -10,6 +10,6 @@ namespace TicketCRM.SupportModule
         Task<List<Organization>> GetOrganisationAsync();
 
 
-        string FindOrganisationName(Guid? saccoid);
+        string FindOrganisationName(Guid? organizationId);
     }
 }

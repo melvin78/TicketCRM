@@ -24,10 +24,10 @@ namespace TicketCRM.Controllers
         }
         
         [HttpGet]
-        [Route("sacco-recent-activity/{saccoId}")]
-        public ActionResult<List<RecentActivityDTO>> FindSaccoRecentActivities(string saccoId)
+        [Route("sacco-recent-activity/{organizationId}")]
+        public ActionResult<List<RecentActivityDTO>> FindSaccoRecentActivities(string organizationId)
         {
-            return Ok(_recentActivityService.FindRecentActivitiesAsync(saccoId));
+            return Ok(_recentActivityService.FindRecentActivitiesAsync(organizationId));
         }
     }
     

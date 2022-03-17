@@ -27,12 +27,12 @@
             </div>
             
             <div class="form-group">
-                <label asp-for="Sacco"></label>
+                <label asp-for="Organization"></label>
                 
-                <select required="" class="form-select" asp-for="Sacco" asp-items="@Model.Saccos">
+                <select required="" class="form-select" asp-for="Organization" asp-items="@Model.Organizations">
                     <option value="" selected hidden disabled="">Choose sacco you belong too</option>
                 </select>
-                <span asp-validation-for="Sacco"></span>
+                <span asp-validation-for="Organization"></span>
             </div>
 
             <div class="form-group">

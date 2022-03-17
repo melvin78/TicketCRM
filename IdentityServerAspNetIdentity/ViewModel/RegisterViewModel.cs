@@ -16,9 +16,9 @@ namespace IdentityServerAspNetIdentity.ViewModel
         public string Password { get; set; }
          
         [BindRequired]
-        public Guid Sacco { get; set; }
+        public Guid Organization { get; set; }
 
-        public SelectList Saccos { get; set; }
+        public SelectList Organizations { get; set; }
         
         [Required]
         public string FirstName { get; set; }

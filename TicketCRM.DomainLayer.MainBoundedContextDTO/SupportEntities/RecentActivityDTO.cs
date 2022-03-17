@@ -15,6 +15,6 @@
         
         public string icon { get; set; }
         
-        public Guid saccoid { get; set; }
+        public Guid orgnazationid { get; set; }
     }
 }

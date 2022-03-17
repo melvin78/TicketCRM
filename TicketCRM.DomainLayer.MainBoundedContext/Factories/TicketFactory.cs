@@ -5,7 +5,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Factories
     public static class TicketFactory
     {
         public static Ticket CreateNewTicket(
-            Guid customerId, Guid enquiryCategoryId, Guid saccoId, Guid? careTaker,
+            Guid customerId, Guid enquiryCategoryId, Guid organizationId, Guid? careTaker,
             string attachments, string ticketNo, DateTime? resolvedOn,
             string firstMessage, Guid ticketStatusId, int priority, string remarks,
             DateTime? closedOn,
@@ -24,7 +24,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Factories
 
             ticket.TicketNo = ticketNo;
 
-            ticket.SaccoId = saccoId;
+            ticket.OrganizationId = organizationId;
 
             ticket.TicketStatusId = ticketStatusId;
 

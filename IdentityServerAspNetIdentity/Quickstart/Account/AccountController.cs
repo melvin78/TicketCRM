@@ -28,7 +28,7 @@ using TicketCRM.DataLayer.EmailTemplates.Views.Emails.RegisteredAccount;
 using TicketCRM.DomainLayer.MainBoundedContextDTO.SupportEntities;
 using AgentDTO = IdentityServerAspNetIdentity.Configuration.AgentDTO;
 using DepartmentDTO = IdentityServerAspNetIdentity.Configuration.DepartmentDTO;
-using SaccoDTO = IdentityServerAspNetIdentity.Configuration.SaccoDTO;
+using OrganizationDTO = IdentityServerAspNetIdentity.Configuration.OrganizationDTO;
 
 namespace IdentityServerHost.Quickstart.UI
 {
@@ -84,9 +84,9 @@ namespace IdentityServerHost.Quickstart.UI
         {
             var vm = new RegisterViewModel();
             
-            var allSaccos = _organizationService.GetListOfSaccos();
+            var allOrganizations = _organizationService.GetListOfOrganizations();
 
-            vm.Saccos = new SelectList(_mapper.Map<List<SaccoDTO>>(allSaccos), "Id", "SaccoName");
+            vm.Organizations = new SelectList(_mapper.Map<List<OrganizationDTO>>(allOrganizations), "Id", "OrganizationName");
             
             return View(vm);
         }
@@ -190,9 +190,9 @@ namespace IdentityServerHost.Quickstart.UI
         {
             if (!ModelState.IsValid)
             {
-                var allSaccos = _organizationService.GetListOfSaccos();
+                var allOrganizations = _organizationService.GetListOfOrganizations();
 
-                model.Saccos = new SelectList(_mapper.Map<List<SaccoDTO>>(allSaccos), "Id", "SaccoName");
+                model.Organizations = new SelectList(_mapper.Map<List<OrganizationDTO>>(allOrganizations), "Id", "OrganizationName");
             }
             
             if (ModelState.IsValid)
@@ -201,7 +201,7 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    SaccoId = model.Sacco,
+                    OrganizationId = model.Organization,
                     FirstName = model.FirstName,
                     SecondName = model.SecondName
                 };
@@ -286,7 +286,7 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    SaccoId =  Guid.Parse("3d18bfa3-0991-4c13-a866-86635d7863be"),
+                    OrganizationId =  Guid.Parse("3d18bfa3-0991-4c13-a866-86635d7863be"),
                     FirstName = model.FirstName,
                     SecondName = model.SecondName,
                 };

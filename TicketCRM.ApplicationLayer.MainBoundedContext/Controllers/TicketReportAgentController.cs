@@ -94,7 +94,7 @@ namespace TicketCRM.Controllers
         
         [HttpGet]
         [Route("get-organization-resolved-tickets/{organizationId}")]
-        public ActionResult<IEnumerable<TicketSummary>> GetSaccoResolvedTickets(string organizationId)
+        public ActionResult<IEnumerable<TicketSummary>> GetOrganizationResolvedTickets(string organizationId)
         {
             var ticketClientReports =  _reportAgentService.FindTicketSummaryByOrganizationId(Guid.Parse("02d5e20e-471c-ec11-b063-14cb19ba19a9"),Guid.Parse(organizationId));
             return Ok(_mapper.Map<List<TicketReportSummaryDTO>>(ticketClientReports));

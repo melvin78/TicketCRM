@@ -12,7 +12,7 @@ namespace IdentityServerAspNetIdentity.Services
 
         string GetEmail(string userId);
 
-        Guid? GetSaccoId(string userId);
+        Guid? GetOrganizationId(string userId);
         
         string GetFirstName(string userId);
 

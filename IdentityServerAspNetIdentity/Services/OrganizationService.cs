@@ -14,9 +14,9 @@ namespace IdentityServerAspNetIdentity.Services
         {
             _applicationDbContext = applicationDbContext;
         }
-        public List<Sacco> GetListOfSaccos()
+        public List<Organization> GetListOfOrganizations()
         {
-            return _applicationDbContext.Set<Sacco>().ToList();
+            return _applicationDbContext.Set<Organization>().ToList();
         }
 
       

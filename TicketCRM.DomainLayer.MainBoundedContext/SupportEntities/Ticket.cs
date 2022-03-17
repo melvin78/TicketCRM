@@ -19,12 +19,12 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
         public  Guid EnquiryId { get; set; }
 
 
-        public Guid SaccoId { get; set; }
+        public Guid OrganizationId { get; set; }
 
         public string Attachments { get; set; }
 
 
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
 
         public DateTime? ClosedOn { get; set; }
 
@@ -48,7 +48,7 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.SupportEntities
         
         public List<EnquiryCategory> EnquiryCategory { get; set; }
 
-        public List<Organization> Sacco { get; set; }
+        public List<Organization> Organizations { get; set; }
 
         public List<TicketStatus> TicketStatus { get; set; }
 

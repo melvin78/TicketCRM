@@ -5,17 +5,17 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.RecentActivity
 {
     public class RecentActivitySaccoSpecification:BaseSpecification<RecentActivity>
     {
-        public Guid SaccoId { get; }
+        public Guid OrgnazationId { get; }
 
-        public RecentActivitySaccoSpecification(Guid saccoId)
+        public RecentActivitySaccoSpecification(Guid organizationId)
         {
-            SaccoId = saccoId;
+            OrgnazationId = organizationId;
         }
         public override Expression<Func<RecentActivity, bool>> SpecExpression
         {
             get
             {
-                return o => o.SaccoId == SaccoId;
+                return o => o.OrganizationId == OrgnazationId;
             }
         }
     }

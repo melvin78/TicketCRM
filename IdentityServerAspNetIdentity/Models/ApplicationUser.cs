@@ -13,7 +13,7 @@ namespace IdentityServerAspNetIdentity.Models
         
         public string SecondName { get; set; }
 
-        public Guid? SaccoId { get; set; }
+        public Guid? OrganizationId { get; set; }
         
         
         

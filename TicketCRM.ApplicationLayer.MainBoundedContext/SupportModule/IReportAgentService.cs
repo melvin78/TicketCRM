@@ -13,7 +13,7 @@ namespace TicketCRM.SupportModule
 
         TicketEmailReportSummary GetEmailTicketReportSummaries(string ticketNo);
         
-        Task<List<TicketSummary>> FindResolvedTicketsBySaccoId(string saccoId);
+        Task<List<TicketSummary>> FindResolvedTicketsByOrganizationId(string organizationId);
 
 
         Task<List<TicketSummary>> FindAllResolvedTickets();

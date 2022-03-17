@@ -58,7 +58,7 @@
         
         public DateTime? ExpectedDueDate { get; set; }
         
-        public  string SaccoName { get; set; }
+        public  string OrganizationName { get; set; }
         
         public int OverDueBy { get; set; }
     }

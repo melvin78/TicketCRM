@@ -12,7 +12,7 @@
         
         public string Icon { get; set; }
         
-        public Guid SaccoId { get; set; }
+        public Guid OrganizationId { get; set; }
         
     }
 }

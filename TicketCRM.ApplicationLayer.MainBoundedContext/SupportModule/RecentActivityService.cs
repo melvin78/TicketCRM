@@ -29,7 +29,7 @@ namespace TicketCRM.SupportModule
                     recentActivityDto.task,
                     recentActivityDto.ticketNo,
                     recentActivityDto.emailAddress,
-                    recentActivityDto.saccoid
+                    recentActivityDto.orgnazationid
                 );
 
             return  _unitOfWork.Repository<RecentActivity>().Add(recentActivity);
@@ -46,7 +46,7 @@ namespace TicketCRM.SupportModule
                     recentActivityDto.task,
                     recentActivityDto.ticketNo,
                     recentActivityDto.emailAddress,
-                    recentActivityDto.saccoid
+                    recentActivityDto.orgnazationid
                 );
 
             return await  _unitOfWork.Repository<RecentActivity>().AddAsync(recentActivity);
@@ -60,10 +60,10 @@ namespace TicketCRM.SupportModule
             return _mapper.Map<List<RecentActivityDTO>>(res);
         }
 
-        public List<RecentActivityDTO> FindRecentActivitiesAsync(string saccoId)
+        public List<RecentActivityDTO> FindRecentActivitiesAsync(string organizationId)
         {
             var res=  _unitOfWork.Repository<RecentActivity>().FindAll(new RecentActivityBaseSpecification()
-                    .And(new RecentActivitySaccoSpecification(Guid.Parse(saccoId))))
+                    .And(new RecentActivitySaccoSpecification(Guid.Parse(organizationId))))
                 .ToList();
 
             return _mapper.Map<List<RecentActivityDTO>>(res);

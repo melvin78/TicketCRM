@@ -18,7 +18,7 @@
         
         public  DateTime? ReopenedOn { get; set; }
             
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
         
         public Guid EnquiryCategoryId { get; set; }
         
@@ -26,7 +26,7 @@
         public Guid EnquiryId { get; set; }
 
         public string FirstMessage { get; set; }
-        public Guid SaccoId { get; set; }
+        public Guid OrganizationId { get; set; }
         
         public Guid TicketStatusId { get; set; }
         
@@ -40,7 +40,7 @@
 
         public DateTime? ExpectedDueDate { get; set; }
         
-        public string TicketNo { get; set; }
+        public string? TicketNo { get; set; }
         
         
         public List<string> AgentAddressed { get; set; }

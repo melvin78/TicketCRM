@@ -5,17 +5,17 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Specifications.TicketSpecific
 {
     public class TicketSaccoSpecification:BaseSpecification<Ticket>
     {
-        public Guid SaccoId { get; }
+        public Guid OrganizationId { get; }
 
-        public TicketSaccoSpecification(Guid saccoId)
+        public TicketSaccoSpecification(Guid organizationId)
         {
-            SaccoId = saccoId;
+            OrganizationId = organizationId;
         }
         public override Expression<Func<Ticket, bool>> SpecExpression
         {
             get
             {
-                return o => o.SaccoId == SaccoId;
+                return o => o.OrganizationId == OrganizationId;
             }
         }
     }

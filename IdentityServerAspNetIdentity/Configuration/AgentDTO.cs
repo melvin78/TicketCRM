@@ -18,7 +18,7 @@ namespace IdentityServerAspNetIdentity.Configuration
         public Guid DepartmentId { get; set; }
         
         
-        public Guid SaccoId { get; set; }
+        public Guid OrganizationId { get; set; }
         
         public DateTime? TokenAssignmentDate { get; set; }
         

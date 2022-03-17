@@ -51,7 +51,7 @@ namespace TicketCRM
                 .ForMember(dest => dest.remarks, opt => opt.MapFrom(src => src.Remarks))
                 .ForMember(dest => dest.closedon, opt => opt.MapFrom((src => src.ClosedOn)))
                 .ForMember(dest => dest.reopeneddate, opt => opt.MapFrom(src => src.ReopenedOn))
-                .ForMember(dest => dest.saccoid, opt => opt.MapFrom(src => src.SaccoId));
+                .ForMember(dest => dest.organizationid, opt => opt.MapFrom(src => src.OrganizationId));
 
 
 

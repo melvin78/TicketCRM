@@ -110,11 +110,11 @@ namespace TicketCRM.SupportModule
             var ticket = TicketFactory.CreateNewTicket(
                 ticketDto.CustomerId,
                 ticketDto.EnquiryCategoryId,
-                ticketDto.SaccoId,
+                ticketDto.OrganizationId,
                 ticketDto.CareTaker = Guid.Empty,
                 ticketDto.Attachments,
                 ticketDto.TicketNo =
-                    TicketNumberGenerator.GenerateTicketNumber(ticketDto.EnquiryCategoryId, ticketDto.SaccoId),
+                    TicketNumberGenerator.GenerateTicketNumber(ticketDto.EnquiryCategoryId, ticketDto.OrganizationId),
                 ticketDto.ResolvedOn,
                 ticketDto.FirstMessage,
                 ticketDto.TicketStatusId = Guid.Parse("0e06e836-471c-ec11-b063-14cb19ba19a9"),
@@ -139,9 +139,9 @@ namespace TicketCRM.SupportModule
 
             var enquiryVal = _enquiryCategoryService.GetEnquiryCategory(ticketDetails.EnquiryCategoryId);
 
-            var organizationId = _applicationUserService.GetSaccoId(ticketDto.CustomerId.ToString());
+            var organizationId = _applicationUserService.GetOrganizationId(ticketDto.CustomerId.ToString());
 
-            string saccoName = _organizationService.FindOrganisationName(organizationId);
+            string organisationName = _organizationService.FindOrganisationName(organizationId);
 
             await SendEmailNotification(ticketDetails, userEmailAddress);
 
@@ -156,7 +156,7 @@ namespace TicketCRM.SupportModule
             }, "newTicket", "TicketCreated");
 
             recentActivityDto.ticketNo = ticket.TicketNo;
-            recentActivityDto.saccoid = ticket.SaccoId;
+            recentActivityDto.orgnazationid = ticket.OrganizationId;
             recentActivityDto.emailAddress = userEmailAddress;
             recentActivityDto.color = "#385F73";
             recentActivityDto.task = "New Ticket";
@@ -168,7 +168,7 @@ namespace TicketCRM.SupportModule
 
 
             await SendSupportEmail(ticketDetails.TicketNo, userEmailAddress, enquiryVal, ticketDto.FirstMessage, link,
-                ticketDto.AgentAddressed, saccoName);
+                ticketDto.AgentAddressed, organisationName);
 
 
             return ticketDetails;
@@ -191,7 +191,7 @@ namespace TicketCRM.SupportModule
 
                 var reminderViewModel = new ReminderViewModel(reminderTikcets[i].TicketNo, formatOverdueby,
                     "https://agents.caprover.centrino.co.ke", reminderTikcets[i].FirstMessage,
-                    reminderTikcets[i].RaisedBy, reminderTikcets[i].SaccoName);
+                    reminderTikcets[i].RaisedBy, reminderTikcets[i].OrganizationName);
 
 
                 var mailviewDto = new MailViewModelDTO();
@@ -226,7 +226,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker = Guid.Parse(agentId),
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -272,7 +272,7 @@ namespace TicketCRM.SupportModule
                 }, "ticketTransferred", "TransferredTicket");
 
                 recentActivityDto.ticketNo = current.TicketNo;
-                recentActivityDto.saccoid = persisted.SaccoId;
+                recentActivityDto.orgnazationid = persisted.OrganizationId;
                 recentActivityDto.emailAddress = newAgentEmailAddress;
                 recentActivityDto.color = "#385F73";
                 recentActivityDto.task = "Ticket Transferred";
@@ -380,46 +380,46 @@ namespace TicketCRM.SupportModule
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketReopenedSpecification()).Count();
         }
 
-        public int FindOrganizationTransferredTickets(Guid saccoId)
+        public int FindOrganizationTransferredTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketTransferredSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationReopenedTickets(Guid saccoId)
+        public int FindOrganizationReopenedTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketReopenedSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationOpenedTickets(Guid saccoId)
+        public int FindOrganizationOpenedTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketAssignedSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationResolvedTickets(Guid saccoId)
+        public int FindOrganizationResolvedTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketsResolvedSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationOverdueTickets(Guid saccoId)
+        public int FindOrganizationOverdueTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketPendingSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationNewTickets(Guid saccoId)
+        public int FindOrganizationNewTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketNewSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
-        public int FindOrganizationClosedTickets(Guid saccoId)
+        public int FindOrganizationClosedTickets(Guid organizationId)
         {
             return _unitOfWork.Repository<Ticket>().FindAll(new TicketClosedSpecification()
-                .And(new TicketSaccoSpecification(saccoId))).Count();
+                .And(new TicketSaccoSpecification(organizationId))).Count();
         }
 
         public async Task<bool> ResolveTicket(string ticketNo)
@@ -431,7 +431,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker,
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -474,7 +474,7 @@ namespace TicketCRM.SupportModule
                 }, "ticketResolved", "ResolvedTicket");
 
                 recentActivityDto.ticketNo = current.TicketNo;
-                recentActivityDto.saccoid = persisted.SaccoId;
+                recentActivityDto.orgnazationid = persisted.OrganizationId;
                 recentActivityDto.emailAddress = agentEmailAddress;
                 recentActivityDto.color = "#3949AB";
                 recentActivityDto.task = "Ticket Resolved";
@@ -499,7 +499,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker,
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -534,7 +534,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker,
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -570,7 +570,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker,
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -605,7 +605,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker = agentId,
                     persisted.Attachments,
                     persisted.TicketNo,
@@ -640,7 +640,7 @@ namespace TicketCRM.SupportModule
                 var current = TicketFactory.CreateNewTicket(
                     persisted.CustomerId,
                     persisted.EnquiryCategoryId,
-                    persisted.SaccoId,
+                    persisted.OrganizationId,
                     persisted.CareTaker,
                     persisted.Attachments,
                     persisted.TicketNo,

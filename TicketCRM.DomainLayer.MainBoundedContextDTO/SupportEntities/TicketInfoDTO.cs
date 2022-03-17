@@ -32,7 +32,7 @@
         
         public string reopeneddate { get; set; }
         
-        public string saccoid { get; set; }
+        public string organizationid { get; set; }
         
     }
 }

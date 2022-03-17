@@ -38,11 +38,11 @@ namespace IdentityServerAspNetIdentity.Services
 
         }
 
-        public Guid? GetSaccoId(string userId)
+        public Guid? GetOrganizationId(string userId)
         {
             return  _applicationDbContext.Set<ApplicationUser>()
                 .Where(o => o.Id == userId)
-                .Select(o =>o.SaccoId).Single();
+                .Select(o =>o.OrganizationId).Single();
         }
 
         public string GetFirstName(string userId)

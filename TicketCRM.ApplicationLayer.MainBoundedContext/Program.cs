@@ -28,6 +28,19 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
 //->Main Services
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+builder.Services.AddCors(options =>
+{
+    // this defines a CORS policy called "default"
+    options.AddPolicy("default", policy =>
+    {
+        policy.WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+                       
+    });
+                
+               
+});
 
 //->Swagger Services
 builder.Services.AddEndpointsApiExplorer();

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketCRM.DataAccess.Configuration;
 
@@ -10,9 +11,10 @@ using TicketCRM.DataAccess.Configuration;
 namespace TicketCRM.DataAccess.Migrations
 {
     [DbContext(typeof(TicketCRMDbContext))]
-    partial class TicketCRMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220316140637_NewTableOrganisation")]
+    partial class NewTableOrganisation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

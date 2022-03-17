@@ -29,9 +29,9 @@ namespace TicketCRM.SupportModule
             return await _unitOfWork.Repository<Organization>().GetAllAsync();
         }
 
-        public  string FindOrganisationName(Guid? saccoid)
+        public  string FindOrganisationName(Guid? organizationId)
         {
-            return _unitOfWork.Repository<Organization>().FindAll(new SaccoBaseSpecification(saccoid)).First().OrganizationName;
+            return _unitOfWork.Repository<Organization>().FindAll(new SaccoBaseSpecification(organizationId)).First().OrganizationName;
         }
     }
 }

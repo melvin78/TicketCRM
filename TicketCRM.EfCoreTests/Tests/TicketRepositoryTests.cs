@@ -27,7 +27,7 @@ public class TicketRepositoryTests
             CustomerId = Guid.Parse("6aa1b670-2941-4f26-955a-7f6c236c8b3e"),
             EnquiryCategoryId = Guid.Parse("b7020354-0009-4268-8473-ac95d0e4815b"),
             EnquiryId = Guid.Parse("b01e2bad-e787-4777-a2f6-8219e609c503"),
-            SaccoId = Guid.Parse("2fc42189-9497-4638-b5de-22ce8d46c595"),
+            OrganizationId=Guid.Parse("2fc42189-9497-4638-b5de-22ce8d46c595"),
             Attachments = "[{\"filename\":\"6db9c66b-86ea-4d18-8e73-d0b35c66bfb7-9056\",\"type\":\"application/pdf\"}]",
             Remarks = "",
             ClosedOn = null,
@@ -59,7 +59,7 @@ public class TicketRepositoryTests
         Assert.Equal( Guid.Parse("6aa1b670-2941-4f26-955a-7f6c236c8b3e"), result.CustomerId);
         Assert.Equal(Guid.Parse("b7020354-0009-4268-8473-ac95d0e4815b"),result.EnquiryCategoryId);
         Assert.Equal(Guid.Parse("b01e2bad-e787-4777-a2f6-8219e609c503"),result.EnquiryId);
-        Assert.Equal( Guid.Parse("2fc42189-9497-4638-b5de-22ce8d46c595"),result.SaccoId);
+        Assert.Equal( Guid.Parse("2fc42189-9497-4638-b5de-22ce8d46c595"),result.OrganizationId);
         Assert.Equal("[{\"filename\":\"6db9c66b-86ea-4d18-8e73-d0b35c66bfb7-9056\",\"type\":\"application/pdf\"}]",result.Attachments);
         Assert.Empty(result.Remarks);
         Assert.Null(result.ClosedOn);

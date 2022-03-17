@@ -14,7 +14,7 @@ namespace TicketCRM.DataAccess.Configuration
 
             builder.Property(o => o.CareTaker).HasColumnType("char(36)");
 
-            builder.Property(o => o.SaccoId).HasColumnType("char(36)");
+            builder.Property(o => o.OrganizationId).HasColumnType("char(36)");
 
             builder.Property(o => o.EnquiryCategoryId).HasColumnType("char(36)");
 
@@ -26,7 +26,7 @@ namespace TicketCRM.DataAccess.Configuration
                 .WithOne(o => o.Tickets)
                 .HasForeignKey(o => o.Id);
 
-            builder.HasMany(o => o.Sacco)
+            builder.HasMany(o => o.Organizations)
                 .WithOne(o => o.Ticket)
                 .HasForeignKey(o => o.Id);
             

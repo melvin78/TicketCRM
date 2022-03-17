@@ -4,7 +4,7 @@ using TicketCRM.DomainLayer.MainBoundedContext.SupportEntities;
 
 namespace TicketCRM.DataAccess.Configuration
 {
-    public class SaccoCofniguration:IEntityTypeConfiguration<Organization>
+    public class OrganizationCofniguration:IEntityTypeConfiguration<Organization>
     {
         public void Configure(EntityTypeBuilder<Organization> builder)
         {
