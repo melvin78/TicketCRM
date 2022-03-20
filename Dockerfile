@@ -32,7 +32,7 @@ COPY ["TicketCRM.DataLayer.EmailTemplates/TicketCRM.DataLayer.EmailTemplates.csp
 COPY ["TicketCRM.DomainLayer.MainBoundedContext/TicketCRM.DomainLayer.MainBoundedContext.csproj", "TicketCRM.DomainLayer.MainBoundedContext/"]
 COPY ["TicketCRM.DomainLayer.MainBoundedContextDTO/TicketCRM.DomainLayer.MainBoundedContextDTO.csproj", "TicketCRM.DomainLayer.MainBoundedContextDTO/"]
 COPY ["TicketCRM.Infrastructure.Utilities/TicketCRM.Infrastructure.Utilities.csproj", "TicketCRM.Infrastructure.Utilities/"]
-COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
+COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/id"]
 
 
 RUN dotnet restore "TicketCRM.ApplicationLayer.MainBoundedContext/TicketCRM.ApplicationLayer.MainBoundedContext.csproj"

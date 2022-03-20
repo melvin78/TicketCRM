@@ -5,7 +5,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>TicketCRM</RootNamespace>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     </PropertyGroup>
+	
 
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="11.0.1" />
