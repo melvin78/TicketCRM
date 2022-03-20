@@ -5,6 +5,14 @@ RUN apt-get update \
 && rm -rf /var/lib/apt/lists/*
 RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll
 
+
+
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
 ARG SmtpServer=${SmtpServer}
 ARG SmtpUserName=${SmtpUserName}
 ARG SmtpPassword=${SmtpPassword}
@@ -14,14 +22,6 @@ ARG UseDefaultCredentials=${UseDefaultCredentials}
 ARG EnableSsl=${EnableSsl}
 ARG EmailDisplayName=${EmailDisplayName}
 ARG SendersName=${SendersName}
-
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-
 
 COPY "TicketCRM.sln" "TicketCRM.sln"
 
