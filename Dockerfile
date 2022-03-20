@@ -5,6 +5,16 @@ RUN apt-get update \
 && rm -rf /var/lib/apt/lists/*
 RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll
 
+ARG SmtpServer=${SmtpServer}
+ARG SmtpUserName=${SmtpUserName}
+ARG SmtpPassword=${SmtpPassword}
+ARG SmtpServerPort=${SmtpServerPort}
+ARG EnableSsl=${EnableSsl}
+ARG UseDefaultCredentials=${UseDefaultCredentials}
+ARG EnableSsl=${EnableSsl}
+ARG EmailDisplayName=${EmailDisplayName}
+ARG SendersName=${SendersName}
+
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
@@ -17,11 +27,11 @@ COPY "TicketCRM.sln" "TicketCRM.sln"
 
 COPY ["TicketCRM.ApplicationLayer.MainBoundedContext/TicketCRM.ApplicationLayer.MainBoundedContext.csproj", "TicketCRM.ApplicationLayer.MainBoundedContext/"]
 COPY ["TicketCRM.ApplicationLayer.SeedWork/TicketCRM.ApplicationLayer.SeedWork.csproj", "TicketCRM.ApplicationLayer.SeedWork/"]
-COPY ["TicketCRM.Email.Integrations.DataAccess/TicketCRM.Email.Integrations.DataAccess.csproj", "TicketCRM.Email.Integrations.DataAccess/"]
-COPY ["TicketCRM.Email.Templates/TicketCRM.Email.Templates.csproj" ,"TicketCRM.Email.Templates/"]
+COPY ["TicketCRM.DataLayer.DataAccess/TicketCRM.DataLayer.DataAccess.csproj", "TicketCRM.DataLayer.DataAccess/"]
+COPY ["TicketCRM.DataLayer.EmailTemplates/TicketCRM.DataLayer.EmailTemplates.csproj" ,"TicketCRM.DataLayer.EmailTemplates/"]
 COPY ["TicketCRM.DomainLayer.MainBoundedContext/TicketCRM.DomainLayer.MainBoundedContext.csproj", "TicketCRM.DomainLayer.MainBoundedContext/"]
 COPY ["TicketCRM.DomainLayer.MainBoundedContextDTO/TicketCRM.DomainLayer.MainBoundedContextDTO.csproj", "TicketCRM.DomainLayer.MainBoundedContextDTO/"]
-COPY ["TicketCRM.Infrastructure.Utils/TicketCRM.Infrastructure.Utils.csproj", "TicketCRM.Infrastructure.Utils/"]
+COPY ["TicketCRM.Infrastructure.Utilities/TicketCRM.Infrastructure.Utilities.csproj", "TicketCRM.Infrastructure.Utilities/"]
 COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
 
 
