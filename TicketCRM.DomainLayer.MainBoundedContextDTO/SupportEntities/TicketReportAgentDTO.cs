@@ -10,8 +10,6 @@
         
         public string SecondName { get; set; }
         
-        public string PhoneNumber { get; set; }
-        
         public string OrganizationName { get; set; }
         
         public string EnquiryCategoryVal { get; set; }

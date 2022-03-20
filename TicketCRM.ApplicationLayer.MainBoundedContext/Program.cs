@@ -4,6 +4,8 @@ using IdentityServerAspNetIdentity.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TicketCRM;
+using TicketCRM.ApplicationLayer.SeedWork.BackgroundTasks;
+using TicketCRM.CronJobs;
 using TicketCRM.DataAccess;
 using TicketCRM.DataAccess.Configuration;
 using TicketCRM.DataLayer.EmailTemplates.Services;
@@ -65,6 +67,7 @@ builder.Services.AddDbContext<TicketCRMDbContext>(options =>
         .EnableSensitiveDataLogging() // <-- These two calls are optional but help
         .EnableDetailedErrors());
 
+//->cronjobs registration        
 
 //->Application services
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);

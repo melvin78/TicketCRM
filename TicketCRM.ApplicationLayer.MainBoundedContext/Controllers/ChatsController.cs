@@ -28,5 +28,12 @@ namespace TicketCRM.Controllers
         {
             return Ok(_chatService.GetChatsAsync(inboxId));
         }
+        
+        [HttpPost]
+        [Route("mailgun-message")]
+        public ActionResult MailgunMessage()
+        {
+            return Ok();
+        }
     }
 }
