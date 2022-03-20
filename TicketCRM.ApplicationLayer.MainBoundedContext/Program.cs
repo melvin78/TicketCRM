@@ -23,7 +23,16 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 IWebHostEnvironment environment = builder.Environment;
 EmailSettings emailSettings = new EmailSettings();
-configuration.GetSection("EmailSettings").Bind(emailSettings);
+emailSettings.SendersName = Environment.GetEnvironmentVariable("SendersNmae");
+emailSettings.EnableSsl = Convert.ToBoolean(Environment.GetEnvironmentVariable("EnaableSsl"));
+emailSettings.SmtpPassword = Environment.GetEnvironmentVariable("SmtpPassword");
+emailSettings.SmtpServer = Environment.GetEnvironmentVariable("SmtpServer");
+emailSettings.EmailDisplayName = Environment.GetEnvironmentVariable("EmailDisplayName");
+emailSettings.SmtpServerPort = Convert.ToInt32(Environment.GetEnvironmentVariable("SmtpServerPort"));
+emailSettings.SmtpUserName = Environment.GetEnvironmentVariable("SmtpUserName");
+
+
+// configuration.GetSection("EmailSettings").Bind(emailSettings);
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
 
 

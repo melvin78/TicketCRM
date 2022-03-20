@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 RUN apt-get update \
 && apt-get install -y --no-install-recommends libgdiplus libc6-dev \
 && apt-get clean \
@@ -9,14 +9,14 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
 
-COPY ["Centrino.ApplicationLayer.SeedWork/Centrino.ApplicationLayer.SeedWork.csproj", "Centrino.ApplicationLayer.SeedWork/"]
-COPY ["Centrino.Email.Templates/Centrino.Email.Templates.csproj" ,"Centrino.Email.Templates/"]
-COPY ["Centrino.DomainLayer.MainBoundedContextDTO/Centrino.DomainLayer.MainBoundedContextDTO.csproj", "Centrino.DomainLayer.MainBoundedContextDTO/"]
-COPY ["Centrino.Infrastructure.Utils/Centrino.Infrastructure.Utils.csproj", "Centrino.Infrastructure.Utils/"]
+COPY ["TicketCRM.ApplicationLayer.SeedWork/TicketCRM.ApplicationLayer.SeedWork.csproj", "TicketCRM.ApplicationLayer.SeedWork/"]
+COPY ["TicketCRM.Email.Templates/TicketCRM.Email.Templates.csproj" ,"TicketCRM.Email.Templates/"]
+COPY ["TicketCRM.DomainLayer.MainBoundedContextDTO/TicketCRM.DomainLayer.MainBoundedContextDTO.csproj", "TicketCRM.DomainLayer.MainBoundedContextDTO/"]
+COPY ["TicketCRM.Infrastructure.Utils/TicketCRM.Infrastructure.Utils.csproj", "TicketCRM.Infrastructure.Utils/"]
 
 
 RUN dotnet restore "IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj"
