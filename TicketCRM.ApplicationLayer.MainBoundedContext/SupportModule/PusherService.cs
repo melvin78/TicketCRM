@@ -20,11 +20,12 @@ namespace TicketCRM.SupportModule
         {
             var options = new PusherOptions()
             {
-                Cluster = _configuration["PusherSettings:Cluster"],
+                // Cluster = _configuration["PusherSettings:Cluster"],
+                Cluster = Environment.GetEnvironmentVariable("Cluster"),
                 Encrypted = true,
             };
 
-            var pusher = new Pusher(_configuration["PusherSettings:AppId"], _configuration["PusherSettings:AppKey"], _configuration["PusherSettings:AppSecret"],options);
+            var pusher = new Pusher(Environment.GetEnvironmentVariable("appId"), Environment.GetEnvironmentVariable("appKey"), Environment.GetEnvironmentVariable("appSecret"),options);
 
             var result = await pusher.TriggerAsync(channelName, eventName, data,new TriggerOptions()
             {
@@ -38,11 +39,13 @@ namespace TicketCRM.SupportModule
         {
             var options = new PusherOptions()
             {
-                Cluster = _configuration["PusherSettings:Cluster"],
+                // Cluster = _configuration["PusherSettings:Cluster"],
+                Cluster = Environment.GetEnvironmentVariable("Cluster"),
+
                 Encrypted = true,
             };
 
-            var pusher = new Pusher(_configuration["PusherSettings:AppId"],_configuration["PusherSettings:AppKey"],_configuration["PusherSettings:AppSecret"],options);
+            var pusher = new Pusher(Environment.GetEnvironmentVariable("appId"),Environment.GetEnvironmentVariable("appKey"),Environment.GetEnvironmentVariable("appSecret"),options);
 
             var result = await pusher.TriggerAsync(channelName, eventName, data);
 
