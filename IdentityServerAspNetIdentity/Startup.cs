@@ -35,7 +35,13 @@ namespace IdentityServerAspNetIdentity
             Environment = environment;
             Configuration = configuration;
             EmailIdentityServerSettings = new EmailIdentityServerSettings();
-            configuration.GetSection("EmailSettings").Bind(EmailIdentityServerSettings);
+            EmailIdentityServerSettings.EnableSsl = Convert.ToBoolean(System.Environment.GetEnvironmentVariable("EnableSsl"));
+            EmailIdentityServerSettings.SendersName = System.Environment.GetEnvironmentVariable("SendersName");
+            EmailIdentityServerSettings.SmtpPassword = System.Environment.GetEnvironmentVariable("SmtpPassword");
+            EmailIdentityServerSettings.EmailDisplayName = System.Environment.GetEnvironmentVariable("EmailDisplayName");
+            EmailIdentityServerSettings.SmtpServerPort = Convert.ToInt32(System.Environment.GetEnvironmentVariable("SmtpServerPort"));
+            EmailIdentityServerSettings.SmtpUserName = System.Environment.GetEnvironmentVariable("SmtpUserName");
+            // configuration.GetSection("EmailSettings").Bind(EmailIdentityServerSettings);
 
             
         }

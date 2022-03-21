@@ -11,6 +11,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+
+ARG SmtpServer=${SmtpServer}
+ARG SmtpUserName=${SmtpUserName}
+ARG SmtpPassword=${SmtpPassword}
+ARG SmtpServerPort=${SmtpServerPort}
+ARG EnableSsl=${EnableSsl}
+ARG UseDefaultCredentials=${UseDefaultCredentials}
+ARG EnableSsl=${EnableSsl}
+ARG EmailDisplayName=${EmailDisplayName}
+ARG SendersName=${SendersName}
+
 COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
 
 COPY ["TicketCRM.ApplicationLayer.SeedWork/TicketCRM.ApplicationLayer.SeedWork.csproj", "TicketCRM.ApplicationLayer.SeedWork/"]

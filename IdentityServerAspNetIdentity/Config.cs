@@ -57,8 +57,8 @@ namespace IdentityServerAspNetIdentity
             {
                 new Client
                 {
-                    ClientId = "client_admin_dashboard",
-                    ClientName = "Client Admin Dashboard",
+                    ClientId = "crm_support_ui",
+                    ClientName = "crm_support_ui",
                     RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowAccessTokensViaBrowser = true,
@@ -73,9 +73,9 @@ namespace IdentityServerAspNetIdentity
 
                
          
-                    RedirectUris =           { "http://localhost:7894/account/callback" },
-                    PostLogoutRedirectUris = { "http://localhost:7894" },
-                    AllowedCorsOrigins =     { "http://localhost:7894" },
+                    RedirectUris =           { "https://support-ui.webmelvin.me//account/callback" },
+                    PostLogoutRedirectUris = { "https://support-ui.webmelvin.me" },
+                    AllowedCorsOrigins =     { "https://support-ui.webmelvin.me" },
 
                     AllowedScopes =
                     {
