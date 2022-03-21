@@ -52,7 +52,7 @@ namespace IdentityServerAspNetIdentity.EmailService
             var bodyBuilder = new BodyBuilder();
             var contentType =
                 new ContentType("image", $"{GetImageExtension(bmp.RawFormat).Replace(".", string.Empty)}");
-            var header = bodyBuilder.LinkedResources.Add("centrino",imageBytes, contentType);
+            var header = bodyBuilder.LinkedResources.Add("webmelvin",imageBytes, contentType);
 
           var finalRazorString =  await _razorViewToStringRenderer.
               RenderViewToStringAsync(mailViewModelDto.EmailTemplatePath, model);
