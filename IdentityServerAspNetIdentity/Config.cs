@@ -73,7 +73,7 @@ namespace IdentityServerAspNetIdentity
 
                
          
-                    RedirectUris =           { "https://support-ui.webmelvin.me//account/callback" },
+                    RedirectUris =           { "https://support-ui.webmelvin.me/account/callback" },
                     PostLogoutRedirectUris = { "https://support-ui.webmelvin.me" },
                     AllowedCorsOrigins =     { "https://support-ui.webmelvin.me" },
 
