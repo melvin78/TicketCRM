@@ -14,26 +14,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
-ARG SmtpServer
-ARG SmtpUserName
-ARG SmtpPassword
-ARG SmtpServerPort
-ARG EnableSsl
-ARG UseDefaultCredentials
-ARG EmailDisplayName
-ARG SendersName
-RUN echo $SmtpPassword
-RUN echo $SmtpUserName
-
-
-ENV SmtpServer=${SmtpServer}
-ENV SmtpUserName=${SmtpUserName}
-ENV SmtpPassword=${SmtpPassword}
-ENV SmtpServerPort=${SmtpServerPort}
-ENV UseDefaultCredentials=${UseDefaultCredentials}
-ENV EmailDisplayName=${EmailDisplayName}
-ENV SendersName=${SendersName}
-ENV EnableSsl=${EnableSsl}
 
 
 
@@ -55,6 +35,27 @@ WORKDIR "/src/TicketCRM.ApplicationLayer.MainBoundedContext"
 RUN dotnet build "TicketCRM.ApplicationLayer.MainBoundedContext.csproj" -c Release -o /app/build
 
 FROM build AS publish
+ARG SmtpServer
+ARG SmtpUserName
+ARG SmtpPassword
+ARG SmtpServerPort
+ARG EnableSsl
+ARG UseDefaultCredentials
+ARG EmailDisplayName
+ARG SendersName
+RUN echo $SmtpPassword
+RUN echo $SmtpUserName
+
+
+ENV SmtpServer=${SmtpServer}
+ENV SmtpUserName=${SmtpUserName}
+ENV SmtpPassword=${SmtpPassword}
+ENV SmtpServerPort=${SmtpServerPort}
+ENV UseDefaultCredentials=${UseDefaultCredentials}
+ENV EmailDisplayName=${EmailDisplayName}
+ENV SendersName=${SendersName}
+ENV EnableSsl=${EnableSsl}
+
 RUN dotnet publish "TicketCRM.ApplicationLayer.MainBoundedContext.csproj" -c Release -o /app/publish
 
 FROM base AS final
