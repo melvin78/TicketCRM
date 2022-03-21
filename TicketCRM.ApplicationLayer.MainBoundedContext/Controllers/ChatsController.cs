@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using TicketCRM.DomainLayer.MainBoundedContextDTO.SupportEntities;
 using TicketCRM.SupportModule;
 
@@ -9,10 +10,12 @@ namespace TicketCRM.Controllers
     public class ChatsController : ControllerBase
     {
         private readonly IChatService _chatService;
+        private readonly ILogger<ChatsController> _logger;
 
-        public ChatsController(IChatService chatService)
+        public ChatsController(IChatService chatService,ILogger<ChatsController> logger)
         {
             _chatService = chatService;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -31,8 +34,9 @@ namespace TicketCRM.Controllers
         
         [HttpPost]
         [Route("mailgun-message")]
-        public ActionResult MailgunMessage()
+        public ActionResult MailgunMessage([FromBody]string subject)
         {
+            _logger.LogInformation(subject);
             return Ok();
         }
     }
