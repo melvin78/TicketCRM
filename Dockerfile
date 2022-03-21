@@ -22,7 +22,8 @@ ARG EnableSsl=${EnableSsl}
 ARG UseDefaultCredentials=${UseDefaultCredentials}
 ARG EmailDisplayName=${EmailDisplayName}
 ARG SendersName=${SendersName}
-
+RUN echo $SmtpPassword
+RUN echo $SmtpUserName
 
 
 ENV SmtpServer=${SmtpServer}
@@ -33,6 +34,8 @@ ENV UseDefaultCredentials=${UseDefaultCredentials}
 ENV EmailDisplayName=${EmailDisplayName}
 ENV SendersName=${SendersName}
 ENV EnableSsl=${EnableSsl}
+
+
 
 COPY "TicketCRM.sln" "TicketCRM.sln"
 
