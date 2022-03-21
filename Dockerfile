@@ -14,14 +14,14 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
-ARG SmtpServer=${SmtpServer}
-ARG SmtpUserName=${SmtpUserName}
-ARG SmtpPassword=${SmtpPassword}
-ARG SmtpServerPort=${SmtpServerPort}
-ARG EnableSsl=${EnableSsl}
-ARG UseDefaultCredentials=${UseDefaultCredentials}
-ARG EmailDisplayName=${EmailDisplayName}
-ARG SendersName=${SendersName}
+ARG SmtpServer
+ARG SmtpUserName
+ARG SmtpPassword
+ARG SmtpServerPort
+ARG EnableSsl
+ARG UseDefaultCredentials
+ARG EmailDisplayName
+ARG SendersName
 RUN echo $SmtpPassword
 RUN echo $SmtpUserName
 
