@@ -129,12 +129,12 @@ namespace IdentityServerAspNetIdentity
 
         public void Configure(IApplicationBuilder app)
         {
-            // app.Use(async (ctx, next) =>
-            // {
-            //     ctx.Request.Scheme = "https";
-            //     await next();
-            //
-            // });
+            app.Use(async (ctx, next) =>
+            {
+                ctx.Request.Scheme = "https";
+                await next();
+            
+            });
             app.UseCookiePolicy(new CookiePolicyOptions()
             {
                 MinimumSameSitePolicy = SameSiteMode.Lax
