@@ -33,7 +33,6 @@ emailSettings.SmtpServerPort = Convert.ToInt32(Environment.GetEnvironmentVariabl
 emailSettings.SmtpUserName = Environment.GetEnvironmentVariable("SmtpUserName");
 
 
-// configuration.GetSection("EmailSettings").Bind(emailSettings);
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
 
 
