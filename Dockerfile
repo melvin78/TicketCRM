@@ -13,15 +13,26 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+
 ARG SmtpServer=${SmtpServer}
 ARG SmtpUserName=${SmtpUserName}
 ARG SmtpPassword=${SmtpPassword}
 ARG SmtpServerPort=${SmtpServerPort}
 ARG EnableSsl=${EnableSsl}
 ARG UseDefaultCredentials=${UseDefaultCredentials}
-ARG EnableSsl=${EnableSsl}
 ARG EmailDisplayName=${EmailDisplayName}
 ARG SendersName=${SendersName}
+
+
+
+ENV SmtpServer=${SmtpServer}
+ENV SmtpUserName=${SmtpUserName}
+ENV SmtpPassword=${SmtpPassword}
+ENV SmtpServerPort=${SmtpServerPort}
+ENV UseDefaultCredentials=${UseDefaultCredentials}
+ENV EmailDisplayName=${EmailDisplayName}
+ENV SendersName=${SendersName}
+ENV EnableSsl=${EnableSsl}
 
 COPY "TicketCRM.sln" "TicketCRM.sln"
 
