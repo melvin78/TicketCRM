@@ -34,7 +34,7 @@ namespace TicketCRM.Controllers
         
         [HttpPost]
         [Route("mailgun-message")]
-        public ActionResult MailgunMessage([FromBody]string subject)
+        public ActionResult MailgunMessage([FromForm]string subject)
         {
             _logger.LogInformation(subject);
             return Ok();
