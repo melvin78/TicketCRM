@@ -14,9 +14,9 @@ WORKDIR /src
 COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
 
 COPY ["TicketCRM.ApplicationLayer.SeedWork/TicketCRM.ApplicationLayer.SeedWork.csproj", "TicketCRM.ApplicationLayer.SeedWork/"]
-COPY ["TicketCRM.Email.Templates/TicketCRM.Email.Templates.csproj" ,"TicketCRM.Email.Templates/"]
+COPY ["TicketCRM.DataLayer.DataAccess/TicketCRM.DataLayer.DataAccess.csproj" ,"TicketCRM.DataLayer.DataAccess/"]
 COPY ["TicketCRM.DomainLayer.MainBoundedContextDTO/TicketCRM.DomainLayer.MainBoundedContextDTO.csproj", "TicketCRM.DomainLayer.MainBoundedContextDTO/"]
-COPY ["TicketCRM.Infrastructure.Utils/TicketCRM.Infrastructure.Utils.csproj", "TicketCRM.Infrastructure.Utils/"]
+COPY ["TicketCRM.Infrastructure.Utilities/TicketCRM.Infrastructure.Utilities.csproj", "TicketCRM.Infrastructure.Utilities/"]
 
 
 RUN dotnet restore "IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj"
