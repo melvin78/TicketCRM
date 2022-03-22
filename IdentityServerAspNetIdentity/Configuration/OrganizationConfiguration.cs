@@ -13,7 +13,7 @@ public class OrganizationConfiguration : IEntityTypeConfiguration<Organization>
 
         builder.Property(o => o.Id).HasColumnType("char(36)");
 
-        builder.ToTable("support_organization");
+        builder.ToTable("support_organizations");
     }
 }
 
