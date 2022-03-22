@@ -143,7 +143,7 @@ namespace TicketCRM.SupportModule
 
             string organisationName = _organizationService.FindOrganisationName(organizationId);
 
-            await SendEmailNotification(ticketDetails, userEmailAddress);
+            await SendEmailNotification(ticketDetails, ticketDto.CustomEmailAddress);
 
 
             await _pusherService.SendPusherNotificationAsync(new

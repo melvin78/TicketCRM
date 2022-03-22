@@ -17,6 +17,7 @@ namespace TicketCRM
             CreateMap<EnquiryCategory, EnquiryCategoryDTO>();
             CreateMap<Ticket, OverdueTicketDTO>();
             CreateMap<Ticket, TicketDTO>()
+                .ForMember(dest =>dest.CustomEmailAddress,opt=>opt.Ignore())
                 .ForMember(dest => dest.AgentAddressed, opt => opt.Ignore());
             CreateMap<Ticket, TicketDetailsDTO>();
             CreateMap<TicketReport, TicketReportClientDTO>();

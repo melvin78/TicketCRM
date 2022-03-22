@@ -42,6 +42,8 @@
         
         public string? TicketNo { get; set; }
         
+        public string? CustomEmailAddress { get; set; }
+        
         
         public List<string> AgentAddressed { get; set; }
     
