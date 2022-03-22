@@ -83,43 +83,43 @@ namespace TicketCRM.SupportModule
                 chatDto.ChatId,
                 chatDto.Date
                 );
-
-            var senderEmailAddress = await _applicationUserService.GetUserEmail(chatDto.SenderId.ToString());
-
-            var receiverEmailAddress = await _applicationUserService.GetUserEmail(chatDto.ReceiverEmailAddress);
-
-
-            string url = "";
-            
-            if (chatDto.Agent)
-            {
-                 url = $"https://helpdesk.centrino.co.ke/chat/{chatDto.IndexId}/{chatDto.InboxId}";
-            }
-
-            else
-            {
-                url = $"https://agents.caprover.centrino.co.ke/chat/{chatDto.IndexId}/{chatDto.InboxId}";
-            }
-            
-              
-
-            await SendConversationEmail(chatDto.Content, chatDto.ChatFileUrl, senderEmailAddress,
-                receiverEmailAddress, chatDto.IndexId, url);
-        
+            //
+            // var senderEmailAddress = await _applicationUserService.GetUserEmail(chatDto.SenderId.ToString());
+            //
+            // var receiverEmailAddress = await _applicationUserService.GetUserEmail(chatDto.ReceiverEmailAddress);
 
 
-            // await _pusherService.SendPusherNotification(new
+            // string url = "";
+            //
+            // if (chatDto.Agent)
             // {
-            //     _id = chatDto.ChatId,
-            //     indexId = chatDto.IndexId,
-            //     content = chatDto.Content,
-            //     senderId = chatDto.SenderId,
-            //     username = chatDto.UserName,
-            //     avatar = chatDto.Avatar,
-            //     date = chatDto.Date,
-            //     timestamp = chatDto.TimeStamp,
-            //     files = chatDto.ChatFileUrl==null? JsonConvert.DeserializeObject("[]"): JsonConvert.DeserializeObject(chatDto.ChatFileUrl) 
-            // }, $"presence-{chatDto.InboxId}", "conversation",chatDto.SocketId);
+            //      url = $"https://helpdesk.centrino.co.ke/chat/{chatDto.IndexId}/{chatDto.InboxId}";
+            // }
+            //
+            // else
+            // {
+            //     url = $"https://agents.caprover.centrino.co.ke/chat/{chatDto.IndexId}/{chatDto.InboxId}";
+            // }
+            //
+            //   
+            //
+            // await SendConversationEmail(chatDto.Content, chatDto.ChatFileUrl, senderEmailAddress,
+            //     receiverEmailAddress, chatDto.IndexId, url);
+            //
+
+
+            await _pusherService.SendPusherNotification(new
+            {
+                _id = chatDto.ChatId,
+                indexId = chatDto.IndexId,
+                content = chatDto.Content,
+                senderId = chatDto.SenderId,
+                username = chatDto.UserName,
+                avatar = chatDto.Avatar,
+                date = chatDto.Date,
+                timestamp = chatDto.TimeStamp,
+                files = chatDto.ChatFileUrl==null? JsonConvert.DeserializeObject("[]"): JsonConvert.DeserializeObject(chatDto.ChatFileUrl) 
+            }, $"ticket-{chatDto.InboxId}", "conversation",chatDto.SocketId);
             
             return await _unitOfWork.Repository<Chats>().AddAsync(chat);
 

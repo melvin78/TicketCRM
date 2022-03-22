@@ -43,8 +43,10 @@ ARG EnableSsl
 ARG UseDefaultCredentials
 ARG EmailDisplayName
 ARG SendersName
-RUN echo $SmtpPassword
-RUN echo $SmtpUserName
+ARG appId
+ARG appKey
+ARG appSecret
+ARG Cluster
 
 
 ENV SmtpServer=${SmtpServer}
@@ -55,6 +57,10 @@ ENV UseDefaultCredentials=${UseDefaultCredentials}
 ENV EmailDisplayName=${EmailDisplayName}
 ENV SendersName=${SendersName}
 ENV EnableSsl=${EnableSsl}
+ENV appId =${appId}
+ENV appKey = ${appKey}
+ENV appSecret = ${appSecret}
+ENV Cluster = ${Cluster}
 
 RUN dotnet publish "TicketCRM.ApplicationLayer.MainBoundedContext.csproj" -c Release -o /app/publish
 
