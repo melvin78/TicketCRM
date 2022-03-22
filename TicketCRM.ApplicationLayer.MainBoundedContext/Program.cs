@@ -77,7 +77,11 @@ builder.Services.AddDbContext<TicketCRMDbContext>(options =>
         .EnableDetailedErrors());
 
 //->cronjobs registration        
-
+builder.Services.AddCronJob<AssignTicketCronJob>(c =>
+{
+c.TimeZoneInfo= TimeZoneInfo.Local;
+c.CronExpression = @"*/2 * * * *";
+});
 //->Application services
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.AddScoped<EmailSettings>(es => emailSettings);

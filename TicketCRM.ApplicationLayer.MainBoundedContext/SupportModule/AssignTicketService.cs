@@ -175,29 +175,7 @@ namespace TicketCRM.SupportModule
 
                 _inboxService.AddNewInbox(inboxDto);
 
-                string firstMessage = ticketDetails.FirstMessage;
-                string createdOn = ticketDetails.CreatedAt.ToLongDateString();
-                string enquiry = _unitOfWork.Repository<EnquiryCategory>()
-                    .FindAll(new EnquiryCategorySpecificationId(_unassignedTickets[j].EnquiryCategoryId))
-                    .FirstOrDefault()
-                    ?.EnquiryCategoryVal;
-                string clientEmailAddress =
-                    _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
-
-                var inboxId = _inboxService.GetInboxId(_unassignedTickets[j].TicketNo).ToString();
-
-                string url = $"https://agents.caprover.centrino.co.ke/chat/{_unassignedTickets[j].TicketNo}/{inboxId}";
-
-
-                SendEmailNotification(
-                    _unassignedTickets[j].TicketNo,
-                    roundRobinListOfagents.Next().Username,
-                    firstMessage,
-                    enquiry,
-                    createdOn,
-                    clientEmailAddress,
-                    url
-                );
+         
             }
 
           
