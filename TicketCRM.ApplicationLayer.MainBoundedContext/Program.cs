@@ -24,7 +24,7 @@ ConfigurationManager configuration = builder.Configuration;
 IWebHostEnvironment environment = builder.Environment;
 EmailSettings emailSettings = new EmailSettings();
 // configuration.GetSection("EmailSettings").Bind(emailSettings);
-emailSettings.SendersName = Environment.GetEnvironmentVariable("SendersNmae");
+emailSettings.SendersName =Environment.GetEnvironmentVariable("SendersNmae");
 emailSettings.EnableSsl = Convert.ToBoolean(Environment.GetEnvironmentVariable("EnaableSsl"));
 emailSettings.SmtpPassword = Environment.GetEnvironmentVariable("SmtpPassword");
 emailSettings.SmtpServer = Environment.GetEnvironmentVariable("SmtpServer");

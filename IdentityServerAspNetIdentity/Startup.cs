@@ -28,22 +28,25 @@ namespace IdentityServerAspNetIdentity
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
         
-        private EmailIdentityServerSettings EmailIdentityServerSettings { get; }
+        public EmailIdentityServerSettings _emailIdentityServerSettings { get; set; }
+        
 
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Environment = environment;
             Configuration = configuration;
-            EmailIdentityServerSettings = new EmailIdentityServerSettings();
-            EmailIdentityServerSettings.EnableSsl = Convert.ToBoolean(System.Environment.GetEnvironmentVariable("EnableSsl"));
-            EmailIdentityServerSettings.SendersName = System.Environment.GetEnvironmentVariable("SendersName");
-            EmailIdentityServerSettings.SmtpPassword = System.Environment.GetEnvironmentVariable("SmtpPassword");
-            EmailIdentityServerSettings.EmailDisplayName = System.Environment.GetEnvironmentVariable("EmailDisplayName");
-            EmailIdentityServerSettings.SmtpServerPort = Convert.ToInt32(System.Environment.GetEnvironmentVariable("SmtpServerPort"));
-            EmailIdentityServerSettings.SmtpUserName = System.Environment.GetEnvironmentVariable("SmtpUserName");
+            var emailIdentityServerSettings = new EmailIdentityServerSettings();
+            emailIdentityServerSettings.EnableSsl = Convert.ToBoolean(System.Environment.GetEnvironmentVariable("EnableSsl"));
+            emailIdentityServerSettings.SendersName = System.Environment.GetEnvironmentVariable("SendersName");
+            emailIdentityServerSettings.SmtpPassword = System.Environment.GetEnvironmentVariable("SmtpPassword");
+            emailIdentityServerSettings.EmailDisplayName = System.Environment.GetEnvironmentVariable("EmailDisplayName");
+            emailIdentityServerSettings.SmtpServerPort = Convert.ToInt32(System.Environment.GetEnvironmentVariable("SmtpServerPort"));
+            emailIdentityServerSettings.SmtpUserName = System.Environment.GetEnvironmentVariable("SmtpUserName");
+
+            _emailIdentityServerSettings = emailIdentityServerSettings;
             // configuration.GetSection("EmailSettings").Bind(EmailIdentityServerSettings);
 
-            
+
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -70,7 +73,7 @@ namespace IdentityServerAspNetIdentity
             
      
             services.AddTransient<IEmailIdentityServerService,EmailIdentityServerService>(email
-                =>new EmailIdentityServerService(EmailIdentityServerSettings));
+                =>new EmailIdentityServerService(_emailIdentityServerSettings));
             services.AddTransient<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
