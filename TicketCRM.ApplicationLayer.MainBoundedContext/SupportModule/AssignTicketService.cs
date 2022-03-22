@@ -132,19 +132,6 @@ namespace TicketCRM.SupportModule
                 _ticketService.AssignAgentToUser(_unassignedTickets[j].TicketNo,
                     roundRobinListOfagents.Next().UserId);
 
-
-                if (j == _unassignedTickets.Count - 1)
-                    _agentService.AssignAgentWithToken(_agentList.Last().UserId,
-                        _agentList.First().UserId);
-            }
-
-
-            for (var j = 0; j < _unassignedTickets.Count; j++)
-            {
-                var ticketDetails = _unitOfWork.Repository<Ticket>()
-                    .FindAll(new TicketMessageSpecification(_unassignedTickets[j].TicketNo))
-                    .First();
-                
                 var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
 
                 var userNameTo = _applicationUserService
@@ -175,8 +162,14 @@ namespace TicketCRM.SupportModule
 
                 _inboxService.AddNewInbox(inboxDto);
 
-         
+
+                if (j == _unassignedTickets.Count - 1)
+                    _agentService.AssignAgentWithToken(_agentList.Last().UserId,
+                        _agentList.First().UserId);
             }
+
+
+        
 
           
         }
