@@ -22,6 +22,15 @@ ARG EnableSsl=${EnableSsl}
 ARG EmailDisplayName=${EmailDisplayName}
 ARG SendersName=${SendersName}
 
+ENV SmtpServer=${SmtpServer}
+ENV SmtpUserName=${SmtpUserName}
+ENV SmtpPassword=${SmtpPassword}
+ENV SmtpServerPort=${SmtpServerPort}
+ENV UseDefaultCredentials=${UseDefaultCredentials}
+ENV EmailDisplayName=${EmailDisplayName}
+ENV SendersName=${SendersName}
+ENV EnableSsl=${EnableSsl}
+
 COPY ["IdentityServerAspNetIdentity/IdentityServerAspNetIdentity.csproj", "IdentityServerAspNetIdentity/"]
 
 COPY ["TicketCRM.ApplicationLayer.SeedWork/TicketCRM.ApplicationLayer.SeedWork.csproj", "TicketCRM.ApplicationLayer.SeedWork/"]
