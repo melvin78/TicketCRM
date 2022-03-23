@@ -28,6 +28,7 @@ namespace TicketCRM.SupportModule
         private readonly IPusherService _pusherService;
         private readonly IRecentActivityService _recentActivityService;
         private readonly ITicketService _ticketService;
+        private readonly RoundRobinList<Agent> _roundRobinList;
 
         private readonly List<TicketDetailsDTO> _unassignedTickets;
 
@@ -60,6 +61,7 @@ namespace TicketCRM.SupportModule
             _logger = logger;
             _unassignedTickets = GetAllUnassignedTickets();
             _agentList = GetAgentList();
+            _roundRobinList = SaveRoundRobinAgent();
         }
 
 
@@ -119,6 +121,11 @@ namespace TicketCRM.SupportModule
             return _unitOfWork.Repository<Agent>().FindAll(new UserAgentSpecification())
                 .ToList();
         }
+        
+        public RoundRobinList<Agent> SaveRoundRobinAgent()
+        {
+            return new RoundRobinList<Agent>(_agentList);
+        }
 
 
         public void AssignRoundRobin(CancellationToken cancellationToken)
@@ -129,27 +136,24 @@ namespace TicketCRM.SupportModule
                 _logger.LogInformation($"Agent list is{_agentList[i].Username} token assignment date is {_agentList[i].TokenAssignmentDate.Humanize()} ");
             }
         
-          
-            var roundRobinListOfagents = new RoundRobinList<Agent>(
-                _agentList
-            );
+      
             for (int i = 0; i < _agentList.Count; i++)
             {
-                _logger.LogInformation($"First agent is {roundRobinListOfagents.Next().Username} and token assignment date is {roundRobinListOfagents.Next().TokenAssignmentDate.Humanize()}");
+                _logger.LogInformation($"First agent is {_roundRobinList.Next().Username} and token assignment date is {_roundRobinList.Next().TokenAssignmentDate.Humanize()}");
 
             }
 
 
             for (var j = 0; j < _unassignedTickets.Count; j++)
             {
-                _logger.LogInformation($"First agent is {roundRobinListOfagents.Next().Username}");
+                _logger.LogInformation($"First agent is {_roundRobinList.Next().Username}");
                 _ticketService.AssignAgentToUser(_unassignedTickets[j].TicketNo,
-                    roundRobinListOfagents.Next().UserId);
+                    _roundRobinList.Next().UserId);
                 
                 var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
                 
                 var userNameTo = _applicationUserService
-                    .GetEmail(roundRobinListOfagents.Next().UserId.ToString());
+                    .GetEmail(_roundRobinList.Next().UserId.ToString());
 
                 
                 var inboxDto = new InboxDTO
@@ -166,7 +170,7 @@ namespace TicketCRM.SupportModule
                     LastMessageSenderId = Guid.Empty,
                     LastMessageUserName = "",
                     RoomUsersIdFrom = _unassignedTickets[j].CustomerId,
-                    RoomUsersIdTo = roundRobinListOfagents.Next().UserId,
+                    RoomUsersIdTo = _roundRobinList.Next().UserId,
                     RoomUsersUserNameFrom = userNameFrom,
                     RoomUsersUserNameTo = userNameTo,
                     Avatar =
@@ -190,7 +194,7 @@ namespace TicketCRM.SupportModule
 
         public void SendEmail(CancellationToken cancellationToken)
         {
-            var roundRobinListOfagents = new RoundRobinList<Agent>(
+            var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
             for (var j = 0; j < _unassignedTickets.Count; j++) 
@@ -215,7 +219,7 @@ namespace TicketCRM.SupportModule
 
                 SendEmailNotification(
                     _unassignedTickets[j].TicketNo,
-                    roundRobinListOfagents.Next().Username,
+                    _roundRobinList.Next().Username,
                     firstMessage,
                     enquiry,
                     createdOn,
@@ -380,14 +384,14 @@ namespace TicketCRM.SupportModule
         {
             
 
-            var roundRobinListOfagents = new RoundRobinList<Agent>(
+            var _roundRobinList = new RoundRobinList<Agent>(
                _agentList
             );
             
             for (var j = 0; j < _unassignedTickets.Count; j++)
                 _pusherService.SendPusherNotification(new
                 {
-                    emailAddress = roundRobinListOfagents.Next().Username,
+                    emailAddress = _roundRobinList.Next().Username,
                     ticketNo = _unassignedTickets[j].TicketNo,
                     task = "Ticket Assigned",
                     color = "#00838F",
@@ -400,7 +404,7 @@ namespace TicketCRM.SupportModule
         {
             
 
-            var roundRobinListOfagents = new RoundRobinList<Agent>(
+            var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
             for (var j = 0; j < _unassignedTickets.Count; j++)
@@ -408,7 +412,7 @@ namespace TicketCRM.SupportModule
                 var recentActivityDto = new RecentActivityDTO
                 {
                     ticketNo = _unassignedTickets[j].TicketNo,
-                    emailAddress = roundRobinListOfagents.Next().Username,
+                    emailAddress = _roundRobinList.Next().Username,
                     color = "#00838F",
                     task = "Ticket Assigned",
                     icon = "mdi-human-greeting"
@@ -422,7 +426,7 @@ namespace TicketCRM.SupportModule
         {
             
 
-            var roundRobinListOfagents = new RoundRobinList<Agent>(
+            var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
 
@@ -432,7 +436,7 @@ namespace TicketCRM.SupportModule
                 var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
 
                 var userNameTo = _applicationUserService
-                    .GetEmail(roundRobinListOfagents.Next().UserId.ToString());
+                    .GetEmail(_roundRobinList.Next().UserId.ToString());
 
 
                 var inboxDto = new InboxDTO
@@ -449,7 +453,7 @@ namespace TicketCRM.SupportModule
                     LastMessageSenderId = Guid.Empty,
                     LastMessageUserName = "",
                     RoomUsersIdFrom = _unassignedTickets[j].CustomerId,
-                    RoomUsersIdTo = roundRobinListOfagents.Next().UserId,
+                    RoomUsersIdTo = _roundRobinList.Next().UserId,
                     RoomUsersUserNameFrom = userNameFrom,
                     RoomUsersUserNameTo = userNameTo,
                     Avatar = "https://centrino-cdn.fra1.digitaloceanspaces.com/support/%E2%80%94Pngtree%E2%80%94ticket_4606064.png"
