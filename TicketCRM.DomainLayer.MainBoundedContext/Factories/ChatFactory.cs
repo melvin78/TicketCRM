@@ -6,24 +6,24 @@ namespace TicketCRM.DomainLayer.MainBoundedContext.Factories
     public static class ChatFactory
     {
         public static Chats AddNewChat(
-            string avatar,
-            string content,
-            bool deleted,
-            bool distributed,
-            bool saved,
-            bool seen,
-            bool system,
+            string? avatar,
+            string? content,
+            bool? deleted,
+            bool? distributed,
+            bool? saved,
+            bool? seen,
+            bool? system,
             ChatFile chatFile,
-            bool disabledActions,
-            bool disabledReactions,
-            string indexId,
+            bool? disabledActions,
+            bool? disabledReactions,
+            string? indexId,
             ReplyMessage replyMessage,
-            Guid senderId,
-            string timestamp,
-            string userName,
-            string inboxId,
-            string chatId,
-            string date
+            Guid? senderId,
+            string? timestamp,
+            string? userName,
+            string? inboxId,
+            string? chatId,
+            string? date
         )
         {
             var chat = new Chats();

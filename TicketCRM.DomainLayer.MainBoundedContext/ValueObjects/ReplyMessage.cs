@@ -2,13 +2,13 @@
 {
     public class ReplyMessage : ValueObject<ReplyMessage>
     {
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
-        public Guid SenderId { get; set; }
+        public Guid? SenderId { get; set; }
 
-        public ChatFile ChatFile { get; set; }
+        public ChatFile? ChatFile { get; set; }
 
-        public ReplyMessage(string content,Guid senderId, ChatFile chatFile)
+        public ReplyMessage(string? content,Guid? senderId, ChatFile? chatFile)
         {
             Content = content;
 

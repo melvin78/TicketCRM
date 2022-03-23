@@ -2,22 +2,22 @@
 {
     public class ChatFile:ValueObject<ChatFile>
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         
-        public int Size { get; set; }
+        public int? Size { get; set; }
         
-        public  string Type { get; set; }
+        public  string? Type { get; set; }
         
-        public string Audio{ get; set; }
+        public string? Audio{ get; set; }
 
-        public int Duration { get; set; }
+        public int? Duration { get; set; }
         
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
-        public string Preview { get; set; }
+        public string? Preview { get; set; }
         
         
-        public ChatFile(string name,int size,string type,string audio,int duration,string url,string preview)
+        public ChatFile(string? name,int? size,string? type,string? audio,int? duration,string? url,string? preview)
         {
             Name = name;
 
