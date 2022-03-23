@@ -38,7 +38,7 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
 
 
 //->Main Services
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
 builder.Services.AddCors(options =>
 {
