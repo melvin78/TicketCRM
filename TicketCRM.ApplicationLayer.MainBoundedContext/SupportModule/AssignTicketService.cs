@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Humanizer;
 using IdentityServerAspNetIdentity.EmailService;
 using RoundRobin;
 using IdentityServerAspNetIdentity.Services;
@@ -122,16 +123,26 @@ namespace TicketCRM.SupportModule
 
         public void AssignRoundRobin(CancellationToken cancellationToken)
         {
-            var agentlist=  _unitOfWork.Repository<Agent>().FindAll(new UserAgentSpecification())
-                .ToList();
+
+            for (int i = 0; i < _agentList.Count; i++)
+            {
+                _logger.LogInformation($"Agent list is{_agentList[i].Username} token assignment date is {_agentList[i].TokenAssignmentDate.Humanize()} ");
+            }
         
+          
             var roundRobinListOfagents = new RoundRobinList<Agent>(
-                agentlist
+                _agentList
             );
+            for (int i = 0; i < _agentList.Count; i++)
+            {
+                _logger.LogInformation($"First agent is {roundRobinListOfagents.Next().Username} and token assignment date is {roundRobinListOfagents.Next().TokenAssignmentDate.Humanize()}");
+
+            }
 
 
             for (var j = 0; j < _unassignedTickets.Count; j++)
             {
+                _logger.LogInformation($"First agent is {roundRobinListOfagents.Next().Username}");
                 _ticketService.AssignAgentToUser(_unassignedTickets[j].TicketNo,
                     roundRobinListOfagents.Next().UserId);
                 
