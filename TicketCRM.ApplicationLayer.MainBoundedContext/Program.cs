@@ -18,6 +18,7 @@ using IDepartmentService = TicketCRM.SupportModule.IDepartmentService;
 using IOrganizationService = TicketCRM.SupportModule.IOrganizationService;
 using OrganizationService = TicketCRM.SupportModule.OrganizationService;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 ConfigurationManager configuration = builder.Configuration;
@@ -59,7 +60,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1",
-        new OpenApiInfo { Title = "Centrino.ApplicationLayer.MainBoundedContext", Version = "v1" });
+        new OpenApiInfo { Title = "Ticket CRM Support Solution", Version = "v1" });
 });
 
 //->Db context registration

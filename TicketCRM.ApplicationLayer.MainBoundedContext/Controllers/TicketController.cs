@@ -231,21 +231,21 @@ namespace TicketCRM.Controllers
 
         [HttpGet]
         [Route("resolve-tickets/{ticketNo}")]
-        public ActionResult<bool> ResolveTicket(string ticketNo)
+        public ActionResult<object> ResolveTicket(string ticketNo)
         {
             return Ok(_ticketService.ResolveTicket(ticketNo));
         }
 
         [HttpGet]
         [Route("close-ticket/{ticketNo}")]
-        public ActionResult<bool> CloseTicket(string ticketNo)
+        public ActionResult<object> CloseTicket(string ticketNo)
         {
             return Ok(_ticketService.CloseTicket(ticketNo));
         }
 
         [HttpGet]
         [Route("re-open-ticket/{ticketNo}/{remarks}")]
-        public ActionResult<bool> ReOpenTicket(string ticketNo, string remarks)
+        public ActionResult<object> ReOpenTicket(string ticketNo, string remarks)
         {
             return Ok(_ticketService.ReOpenTicket(ticketNo, remarks));
         }
@@ -253,7 +253,7 @@ namespace TicketCRM.Controllers
 
         [HttpGet]
         [Route("transfer-ticket-to-agent/{ticketNo}/{agentId}")]
-        public ActionResult<bool> TransferTicketToAgent(string ticketNo, string agentId)
+        public ActionResult<object> TransferTicketToAgent(string ticketNo, string agentId)
         {
             return Ok(_ticketService.TransferTicket(ticketNo, agentId));
         }
