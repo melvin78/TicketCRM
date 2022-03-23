@@ -18,6 +18,7 @@ namespace TicketCRM.ApplicationLayer.SeedWork.BackgroundTasks
             }
 
             services.AddSingleton<IScheduleConfig<T>>(config);
+            services.AddTransient<T>();
             services.AddHostedService<T>();
             return services;
         }

@@ -93,7 +93,7 @@ namespace TicketCRM.SupportModule
             string url)
         {
             var ticketNoViewModel =
-                new EmailAgentViewModel(ticketNo, firstMessage, enquiry, createdOn, clientEmailAddress,url);
+                new EmailAgentViewModel(ticketNo, firstMessage, enquiry, createdOn, clientEmailAddress, url);
 
             var mailviewDto = new MailViewModelDTO();
 
@@ -121,7 +121,7 @@ namespace TicketCRM.SupportModule
             return _unitOfWork.Repository<Agent>().FindAll(new UserAgentSpecification())
                 .ToList();
         }
-        
+
         public RoundRobinList<Agent> SaveRoundRobinAgent()
         {
             return new RoundRobinList<Agent>(_agentList);
@@ -130,32 +130,35 @@ namespace TicketCRM.SupportModule
 
         public void AssignRoundRobin(CancellationToken cancellationToken)
         {
-
             for (int i = 0; i < _agentList.Count; i++)
             {
-                _logger.LogInformation($"Agent list is{_agentList[i].Username} token assignment date is {_agentList[i].TokenAssignmentDate.Humanize()} ");
+                _logger.LogInformation(
+                    $"Agent list is{_agentList[i].Username} token assignment date is {_agentList[i].TokenAssignmentDate.Humanize()} ");
             }
-        
-      
+
+
             for (int i = 0; i < _agentList.Count; i++)
             {
-                _logger.LogInformation($"First agent is {_roundRobinList.Next().Username} and token assignment date is {_roundRobinList.Next().TokenAssignmentDate.Humanize()}");
-
+                _logger.LogInformation(
+                    $"First agent is {_roundRobinList.Next().Username} and token assignment date is {_roundRobinList.Next().TokenAssignmentDate.Humanize()}");
             }
 
 
             for (var j = 0; j < _unassignedTickets.Count; j++)
             {
+                var counterAgent = _roundRobinList.Next().UserId;
+                
                 _logger.LogInformation($"First agent is {_roundRobinList.Next().Username}");
+                
                 _ticketService.AssignAgentToUser(_unassignedTickets[j].TicketNo,
-                    _roundRobinList.Next().UserId);
-                
-                var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
-                
-                var userNameTo = _applicationUserService
-                    .GetEmail(_roundRobinList.Next().UserId.ToString());
+                    counterAgent);
 
-                
+                var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
+
+                var userNameTo = _applicationUserService
+                    .GetEmail(counterAgent.ToString());
+
+
                 var inboxDto = new InboxDTO
                 {
                     Index = _unassignedTickets[j].TicketNo,
@@ -170,14 +173,14 @@ namespace TicketCRM.SupportModule
                     LastMessageSenderId = Guid.Empty,
                     LastMessageUserName = "",
                     RoomUsersIdFrom = _unassignedTickets[j].CustomerId,
-                    RoomUsersIdTo = _roundRobinList.Next().UserId,
+                    RoomUsersIdTo = counterAgent,
                     RoomUsersUserNameFrom = userNameFrom,
                     RoomUsersUserNameTo = userNameTo,
                     Avatar =
                         "https://centrino-cdn.fra1.digitaloceanspaces.com/support/%E2%80%94Pngtree%E2%80%94ticket_4606064.png"
                 };
-                
-                
+
+
                 _inboxService.AddNewInbox(inboxDto);
 
 
@@ -185,11 +188,6 @@ namespace TicketCRM.SupportModule
                     _agentService.AssignAgentWithToken(_agentList.Last().UserId,
                         _agentList.First().UserId);
             }
-
-
-        
-
-          
         }
 
         public void SendEmail(CancellationToken cancellationToken)
@@ -197,7 +195,7 @@ namespace TicketCRM.SupportModule
             var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
-            for (var j = 0; j < _unassignedTickets.Count; j++) 
+            for (var j = 0; j < _unassignedTickets.Count; j++)
             {
                 var ticketDetails = _unitOfWork.Repository<Ticket>()
                     .FindAll(new TicketMessageSpecification(_unassignedTickets[j].TicketNo))
@@ -231,57 +229,57 @@ namespace TicketCRM.SupportModule
 
         public void MarkTicketsAsOverdue(CancellationToken cancellationToken)
         {
-            var assignedTickets =_unitOfWork.Repository<Ticket>().FindAll(new TicketAssignedSpecification().And(new TicketPastDueDateSpecification())).ToList();
-       
-            
+            var assignedTickets = _unitOfWork.Repository<Ticket>()
+                .FindAll(new TicketAssignedSpecification().And(new TicketPastDueDateSpecification())).ToList();
+
+
             if (assignedTickets.Count != 0)
             {
                 for (int i = 0; i < assignedTickets.Count; i++)
                 {
-
-                    
-                
                     //PESAPEPE
                     if (assignedTickets[i].EnquiryId == Guid.Parse("38a565a0-461c-ec11-b063-14cb19ba19a9")
-                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours > 2) ///should be 2 hours
+                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours >
+                        2) ///should be 2 hours
                     {
-                        
                         _logger.LogInformation($"the ticket number is {assignedTickets[i].TicketNo} " +
                                                $"the ticket was created on{assignedTickets[i].CreatedAt}" +
                                                $" and the time now is ${DateTime.Now}" +
                                                $"subtraction = {TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours} ");
-                        
+
                         var rUserEmail = _applicationUserService.GetEmail(assignedTickets[i].CareTaker.ToString());
 
                         var inbox = _unitOfWork.Repository<Inbox>()
                             .FindAll(new InboxTicketSpecification(assignedTickets[i].TicketNo)).FirstOrDefault();
-                        
-                        if (inbox==null)
+
+                        if (inbox == null)
                         {
-                            throw new ArgumentNullException(nameof(inbox), $"{assignedTickets[i].TicketNo}missing inbox");
+                            throw new ArgumentNullException(nameof(inbox),
+                                $"{assignedTickets[i].TicketNo}missing inbox");
                         }
-                        
+
 
                         var url = $"https://agents.caprover.centrino.co.ke/{assignedTickets[i].TicketNo}/{inbox.Id}";
 
                         _ticketService.MarkTicketAsPending(assignedTickets[i].TicketNo);
 
-                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo, assignedTickets[i].FirstMessage, url,
+                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo,
+                            assignedTickets[i].FirstMessage, url,
                             rUserEmail, rUserEmail);
-                        
+
                         _logger.LogInformation($" Pesapepe query is late email has been sent to {rUserEmail}");
                     }
 
                     //ATM BRIDGE
                     if (assignedTickets[i].EnquiryId == Guid.Parse("cdc702bd-461c-ec11-b063-14cb19ba19a9")
-                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours > 2) ///should be 2 hours
+                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours >
+                        2) ///should be 2 hours
                     {
-                        
                         _logger.LogInformation($"the ticket number is {assignedTickets[i].TicketNo} " +
                                                $"the ticket was created on{assignedTickets[i].CreatedAt}" +
                                                $" and the time now is ${DateTime.Now}" +
                                                $"subtraction = {TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours} ");
-                        
+
                         var rUserEmail = _applicationUserService.GetEmail(assignedTickets[i].CareTaker.ToString());
 
                         var inbox = _unitOfWork.Repository<Inbox>()
@@ -291,24 +289,24 @@ namespace TicketCRM.SupportModule
 
                         _ticketService.MarkTicketAsPending(assignedTickets[i].TicketNo);
 
-                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo, assignedTickets[i].FirstMessage, url,
+                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo,
+                            assignedTickets[i].FirstMessage, url,
                             rUserEmail, rUserEmail);
-                        
-                        _logger.LogInformation($" atm bridge query is late email has been sent to {rUserEmail}");
 
+                        _logger.LogInformation($" atm bridge query is late email has been sent to {rUserEmail}");
                     }
 
 
                     //BULK SMS
                     if (assignedTickets[i].EnquiryId == Guid.Parse("7811e72d-4168-4652-9263-a6ec1d4974bf")
-                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours > 24) //should be 24 hours
+                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours >
+                        24) //should be 24 hours
                     {
-                        
                         _logger.LogInformation($"the ticket number is {assignedTickets[i].TicketNo} " +
                                                $"the ticket was created on{assignedTickets[i].CreatedAt}" +
                                                $" and the time now is ${DateTime.Now}" +
                                                $"subtraction = {TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours} ");
-                        
+
                         var rUserEmail = _applicationUserService.GetEmail(assignedTickets[i].CareTaker.ToString());
 
                         var inbox = _unitOfWork.Repository<Inbox>()
@@ -319,16 +317,17 @@ namespace TicketCRM.SupportModule
 
                         _ticketService.MarkTicketAsPending(assignedTickets[i].TicketNo);
 
-                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo, assignedTickets[i].FirstMessage, url,
+                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo,
+                            assignedTickets[i].FirstMessage, url,
                             rUserEmail, rUserEmail);
-                        
-                        _logger.LogInformation($" bulk sms query is late email has been sent to {rUserEmail}");
 
+                        _logger.LogInformation($" bulk sms query is late email has been sent to {rUserEmail}");
                     }
 
                     //VANGUARD FINANCIALS
                     if (assignedTickets[i].EnquiryId == Guid.Parse("bdd797b0-461c-ec11-b063-14cb19ba19a9")
-                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours > 24) //should be 24 hors
+                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours >
+                        24) //should be 24 hors
                     {
                         var rUserEmail = _applicationUserService.GetEmail(assignedTickets[i].CareTaker.ToString());
 
@@ -336,7 +335,7 @@ namespace TicketCRM.SupportModule
                                                $"the ticket was created on{assignedTickets[i].CreatedAt}" +
                                                $" and the time now is ${DateTime.Now}" +
                                                $"subtraction = {TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours} ");
-                        
+
                         var inbox = _unitOfWork.Repository<Inbox>()
                             .FindAll(new InboxTicketSpecification(assignedTickets[i].TicketNo)).First();
 
@@ -344,23 +343,24 @@ namespace TicketCRM.SupportModule
 
                         _ticketService.MarkTicketAsPending(assignedTickets[i].TicketNo);
 
-                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo, assignedTickets[i].FirstMessage, url,
+                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo,
+                            assignedTickets[i].FirstMessage, url,
                             rUserEmail, rUserEmail);
-                        
-                        _logger.LogInformation($" vanguard financials query is late email has been sent to {rUserEmail}");
 
+                        _logger.LogInformation(
+                            $" vanguard financials query is late email has been sent to {rUserEmail}");
                     }
 
                     //MEMBERS PORTAL
                     if (assignedTickets[i].EnquiryId == Guid.Parse("b01e2bad-e787-4777-a2f6-8219e609c503")
-                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours > 24)
+                        && TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours >
+                        24)
                     {
-                        
                         _logger.LogInformation($"the ticket number is {assignedTickets[i].TicketNo} " +
                                                $"the ticket was created on{assignedTickets[i].CreatedAt}" +
                                                $" and the time now is ${DateTime.Now}" +
                                                $"subtraction = {TimeSpan.FromTicks(DateTime.Now.Subtract(assignedTickets[i].CreatedAt).Ticks).TotalHours} ");
-                        
+
                         var rUserEmail = _applicationUserService.GetEmail(assignedTickets[i].CareTaker.ToString());
 
                         var inbox = _unitOfWork.Repository<Inbox>()
@@ -370,11 +370,11 @@ namespace TicketCRM.SupportModule
 
                         _ticketService.MarkTicketAsPending(assignedTickets[i].TicketNo);
 
-                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo, assignedTickets[i].FirstMessage, url,
+                        _ticketService.SendOverdueTicketEmail(assignedTickets[i].TicketNo,
+                            assignedTickets[i].FirstMessage, url,
                             rUserEmail, rUserEmail);
-                        
-                        _logger.LogInformation($" members portal query is late email has been sent to {rUserEmail}");
 
+                        _logger.LogInformation($" members portal query is late email has been sent to {rUserEmail}");
                     }
                 }
             }
@@ -382,12 +382,10 @@ namespace TicketCRM.SupportModule
 
         public void SendPusher(CancellationToken cancellationToken)
         {
-            
-
             var _roundRobinList = new RoundRobinList<Agent>(
-               _agentList
+                _agentList
             );
-            
+
             for (var j = 0; j < _unassignedTickets.Count; j++)
                 _pusherService.SendPusherNotification(new
                 {
@@ -402,8 +400,6 @@ namespace TicketCRM.SupportModule
 
         public void SaveActivity(CancellationToken cancellationToken)
         {
-            
-
             var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
@@ -424,8 +420,6 @@ namespace TicketCRM.SupportModule
 
         public void CreateRoom(CancellationToken cancellationToken)
         {
-            
-
             var _roundRobinList = new RoundRobinList<Agent>(
                 _agentList
             );
@@ -456,14 +450,13 @@ namespace TicketCRM.SupportModule
                     RoomUsersIdTo = _roundRobinList.Next().UserId,
                     RoomUsersUserNameFrom = userNameFrom,
                     RoomUsersUserNameTo = userNameTo,
-                    Avatar = "https://centrino-cdn.fra1.digitaloceanspaces.com/support/%E2%80%94Pngtree%E2%80%94ticket_4606064.png"
+                    Avatar =
+                        "https://centrino-cdn.fra1.digitaloceanspaces.com/support/%E2%80%94Pngtree%E2%80%94ticket_4606064.png"
                 };
 
 
                 _inboxService.AddNewInbox(inboxDto);
             }
         }
-        
-        
     }
 }
