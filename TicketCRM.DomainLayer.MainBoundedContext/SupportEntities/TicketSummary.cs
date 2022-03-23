@@ -2,9 +2,9 @@
 {
     public class TicketSummary:BaseEntity
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
-        public string TicketNo { get; set; }
+        public string? TicketNo { get; set; }
         
         public Guid TicketStatusId { get; set; }
 
@@ -14,29 +14,29 @@
 
         public DateTime? CreatedAt { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string SecondName { get; set; }
+        public string? SecondName { get; set; }
         
         public DateTime? ResolvedOn { get; set; }
         
-        public string Username { get; set; }
+        public string? Username { get; set; }
         
         public Guid CareTaker { get; set; }
         
         public DateTime? ModifiedDate { get; set; }
         
-        public string Description { get; set; }
+        public string? Description { get; set; }
         
-        public string TicketStatusVal { get; set; }
+        public string? TicketStatusVal { get; set; }
         
-        public string EnquiryType { get; set; }
+        public string? EnquiryType { get; set; }
         
-        public string EnquiryCategoryVal { get; set; }
+        public string? EnquiryCategoryVal { get; set; }
         
-        public string FirstMessage { get; set; }
+        public string? FirstMessage { get; set; }
         
-        public string Attachments { get; set; }
+        public string? Attachments { get; set; }
         
         public DateTime? ReopenedOn { get; set; }
         
@@ -52,13 +52,13 @@
         
         public int Timeline { get; set; }
         
-        public string RaisedBy { get; set; }
+        public string? RaisedBy { get; set; }
         
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
         
         public DateTime? ExpectedDueDate { get; set; }
         
-        public  string OrganizationName { get; set; }
+        public  string? OrganizationName { get; set; }
         
         public int OverDueBy { get; set; }
     }
