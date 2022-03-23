@@ -231,9 +231,9 @@ namespace TicketCRM.Controllers
 
         [HttpGet]
         [Route("resolve-tickets/{ticketNo}")]
-        public ActionResult<object> ResolveTicket(string ticketNo)
+        public async Task<ActionResult<bool>> ResolveTicket(string ticketNo)
         {
-            return Ok(_ticketService.ResolveTicket(ticketNo));
+            return Ok(await _ticketService.ResolveTicket(ticketNo));
         }
 
         [HttpGet]
@@ -253,9 +253,10 @@ namespace TicketCRM.Controllers
 
         [HttpGet]
         [Route("transfer-ticket-to-agent/{ticketNo}/{agentId}")]
-        public ActionResult<object> TransferTicketToAgent(string ticketNo, string agentId)
+        public async Task<ActionResult<bool>> TransferTicketToAgent(string ticketNo, string agentId)
         {
-            return Ok(_ticketService.TransferTicket(ticketNo, agentId));
+
+            return Ok(await _ticketService.TransferTicket(ticketNo, agentId));
         }
     }
 }
