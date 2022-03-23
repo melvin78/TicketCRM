@@ -105,8 +105,8 @@ namespace TicketCRM.Controllers
         
         
         [HttpGet]
-        [Route("get-organization-opened-tickets")]
-        public ActionResult<IEnumerable<TicketSummary>> GetOpenedTickets()
+        [Route("get-opened-ticket")]
+        public ActionResult<IEnumerable<TicketSummary>> GetOpenedTicket()
         {
             
             
@@ -114,6 +114,8 @@ namespace TicketCRM.Controllers
             return Ok(_mapper.Map<List<TicketReportSummaryDTO>>(ticketClientReports));
           
         }
+        
+  
         
         [HttpGet]
         [Route("get-closed-tickets")]
