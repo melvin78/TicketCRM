@@ -122,8 +122,11 @@ namespace TicketCRM.SupportModule
 
         public void AssignRoundRobin(CancellationToken cancellationToken)
         {
+            var agentlist=  _unitOfWork.Repository<Agent>().FindAll(new UserAgentSpecification())
+                .ToList();
+        
             var roundRobinListOfagents = new RoundRobinList<Agent>(
-                _agentList
+                agentlist
             );
 
 
@@ -131,13 +134,13 @@ namespace TicketCRM.SupportModule
             {
                 _ticketService.AssignAgentToUser(_unassignedTickets[j].TicketNo,
                     roundRobinListOfagents.Next().UserId);
-
+                
                 var userNameFrom = _applicationUserService.GetEmail(_unassignedTickets[j].CustomerId.ToString());
-
+                
                 var userNameTo = _applicationUserService
                     .GetEmail(roundRobinListOfagents.Next().UserId.ToString());
 
-
+                
                 var inboxDto = new InboxDTO
                 {
                     Index = _unassignedTickets[j].TicketNo,
@@ -158,8 +161,8 @@ namespace TicketCRM.SupportModule
                     Avatar =
                         "https://centrino-cdn.fra1.digitaloceanspaces.com/support/%E2%80%94Pngtree%E2%80%94ticket_4606064.png"
                 };
-
-
+                
+                
                 _inboxService.AddNewInbox(inboxDto);
 
 

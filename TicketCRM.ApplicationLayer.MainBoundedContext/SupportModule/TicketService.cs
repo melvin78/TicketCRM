@@ -81,27 +81,27 @@ namespace TicketCRM.SupportModule
         {
             if (ticketDto == null) return null;
 
-            if (ticketDto.EnquiryId == Guid.Parse("38a565a0-461c-ec11-b063-14cb19ba19a9")) //pesapepe
+            if (ticketDto.EnquiryId == Guid.Parse("38a565a0-461c-ec11-b063-14cb19ba19a9")) //how to mine bitcoins
             {
                 ticketDto.ExpectedDueDate = DateTime.Now.AddHours(2);
             }
 
-            if (ticketDto.EnquiryId == Guid.Parse("cdc702bd-461c-ec11-b063-14cb19ba19a9")) //atm
+            if (ticketDto.EnquiryId == Guid.Parse("cdc702bd-461c-ec11-b063-14cb19ba19a9")) //What are NFTS
             {
                 ticketDto.ExpectedDueDate = DateTime.Now.AddHours(2);
             }
 
-            if (ticketDto.EnquiryId == Guid.Parse("7811e72d-4168-4652-9263-a6ec1d4974bf")) //bulk sms
+            if (ticketDto.EnquiryId == Guid.Parse("7811e72d-4168-4652-9263-a6ec1d4974bf")) //CSS with mysql
             {
                 ticketDto.ExpectedDueDate = DateTime.Now.AddHours(24);
             }
 
-            if (ticketDto.EnquiryId == Guid.Parse("bdd797b0-461c-ec11-b063-14cb19ba19a9")) //vanguard financials
+            if (ticketDto.EnquiryId == Guid.Parse("bdd797b0-461c-ec11-b063-14cb19ba19a9")) //How to centre a div
             {
                 ticketDto.ExpectedDueDate = DateTime.Now.AddHours(24);
             }
 
-            if (ticketDto.EnquiryId == Guid.Parse("b01e2bad-e787-4777-a2f6-8219e609c503")) //members portal
+            if (ticketDto.EnquiryId == Guid.Parse("b01e2bad-e787-4777-a2f6-8219e609c503")) //Convert Html to DB
             {
                 ticketDto.ExpectedDueDate = DateTime.Now.AddHours(24);
             }
@@ -143,7 +143,7 @@ namespace TicketCRM.SupportModule
 
             string organisationName = _organizationService.FindOrganisationName(organizationId);
 
-            await SendEmailNotification(ticketDetails, ticketDto.CustomEmailAddress);
+            await SendEmailNotification(ticketDetails, ticketDto.CustomEmailAddress??userEmailAddress);
 
 
             await _pusherService.SendPusherNotificationAsync(new

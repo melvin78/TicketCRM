@@ -80,7 +80,7 @@ builder.Services.AddDbContext<TicketCRMDbContext>(options =>
 builder.Services.AddCronJob<AssignTicketCronJob>(c =>
 {
 c.TimeZoneInfo= TimeZoneInfo.Local;
-c.CronExpression = @"*/2 * * * *";
+c.CronExpression = @"*/4 * * * *";
 });
 //->Application services
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
