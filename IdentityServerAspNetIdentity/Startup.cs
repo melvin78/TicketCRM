@@ -91,7 +91,12 @@ namespace IdentityServerAspNetIdentity
                 {
                     options.SignIn.RequireConfirmedEmail = true;
                     options.User.RequireUniqueEmail = true;
-                    
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredUniqueChars = 0;
+                    options.Password.RequiredLength = 4;
+
                 } )
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
